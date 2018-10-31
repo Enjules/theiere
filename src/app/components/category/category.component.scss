@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    
+    mat-card {
+        max-width: 400px;
+        margin: 15px;
+
+        mat-card-header {
+
+                mat-card-title {
+                    width: 400px;
+    
+                    > .right {
+                        float: right;
+                    }
+                }
+        }
+    }
+}
+
+.mat-card-header-text {
+    width: 100% !important;
+}

@@ -1,0 +1,18 @@
+.login-form {
+    max-width: 500px;
+    margin: auto;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+  }
+  .login-form * {
+      margin: 5px;
+  }
+  
+  .login-full-width {
+    width: 100%;
+  }
+
+  .invalid-feedback {
+    color: red;
+  }

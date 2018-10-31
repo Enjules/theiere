@@ -1,0 +1,95 @@
+<section class="container">
+  <article>
+    <div id="who">
+      <img [src]="logo_blanc_soeurs_theieres" alt="logo blanc soeurs theieres">
+      <div class="title">
+        <h2>Les soeurs théière,</h2>
+        <p>Qui sont-elles ?</p>
+      </div>
+
+    </div>
+
+    <div id="presentation">
+      <p>
+          Noémie et Natacha sœurs avant tout, ont décidées après des échecs professionnels de vivre de leur passion.
+          La société Les Sœurs Théière est une entreprise familiale, jeune et dynamique mais surtout passionnée par son métier, crée depuis le 23 août 2018.
+          Notre passion pour le thé est à l’origine du projet, toutes deux grandes amatrices de cette boisson chaude que nous consommons au quotidien. Ce fut pour nous une évidence de pouvoir partager notre passion.
+          Notre but est de proposer des produits originaux et authentiques. Nous sélectionnons nos produits de façon à vous proposer que le meilleur et en essayant de privilégier les circuits courts. Nous travaillons en collaboration avec des producteurs locaux de notre région afin de pouvoir allier saveur, plaisir, gourmandise et d’émoustiller tous vos sens.
+          Les ingrédients ont été choisis pour leur goût, leur fraicheur et leur qualité. 
+          Nous sélectionnons également des produits d’épiceries fines (confiture, miel…) de producteurs locaux, pour accompagner nos breuvages gourmands
+          Voici donc notre gamme de thés et infusions Authentiques & Originaux !        
+      </p>
+    </div>
+  </article>
+</section>
+
+<section id="section-promo" class="container">
+  <article id="promo">
+    <div class="item" *ngFor="let img of promo">
+      <img [src]="img.url" alt="">
+      <p>{{ img.title }}</p>
+    </div>
+  </article>
+</section>
+
+
+<section id="section-info" class="container">
+  <div id="info">
+    <article class="bc-orange txt-white">
+      <div class="content">
+        <h3 class="txt-uppercase">PARTEZ à la découverte <span>de nouvelles saveurs</span></h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident iure alias repellendus officiis earum
+          voluptas, autem atque nostrum repudiandae assumenda distinctio deserunt accusamus rerum repellat
+          necessitatibus
+          hic cum nulla!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident iure alias repellendus officiis earum
+          voluptas, autem atque nostrum repudiandae assumenda distinctio deserunt accusamus rerum repellat
+          necessitatibus
+          hic cum nulla!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident iure alias repellendus officiis earum
+          voluptas, autem atque nostrum repudiandae assumenda distinctio deserunt accusamus rerum repellat
+          necessitatibus
+          hic cum nulla!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident iure alias repellendus officiis earum
+          voluptas, autem atque nostrum repudiandae assumenda distinctio deserunt accusamus rerum repellat
+          necessitatibus
+          hic cum nulla!
+        </p>
+      </div>
+
+      <button mat-raised-button>Découvrir notre box</button>
+    </article>
+
+    <article>
+      <div class="content">
+        <h3>Notre produit du mois en <span class="txt-orange txt-lowercase">édition limitée</span></h3>
+        <img [src]="soleilImg" alt="">
+      </div>
+
+      <button mat-raised-button>En savoir plus</button>
+    </article>
+
+    <article>
+      <div class="content">
+        <h3>VOUS ALLEZ ADORER ...</h3>
+        <img [src]="vertImg" alt="">
+      </div>
+
+      <button mat-raised-button>En savoir plus</button>
+    </article>
+
+    <article class="bc">
+        <div class="content">
+          <h3 class="txt-uppercase">Réunion dégustation à domicile</h3>
+          <p>
+            Les Sœurs Théière vous proposent des moments de convivialité autour d’un bon thé. Une découverte de mets gourmands et breuvages magiques qui s’installe chez vous. Nous venons à vous et nous vous proposons des réunions dégustation, des miels et confitures de producteurs locaux… Et bien sûr du thé et des infusions. 
+            Des astuces et des conseils pour satisfaire au mieux vos papilles. 
+            N’hésitez pas à nous contacter.            
+            </p>
+        </div>
+  
+        <button mat-raised-button>En savoir plus</button>
+      </article>
+  </div>
+</section>

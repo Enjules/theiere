@@ -1,0 +1,176 @@
+section {
+    article {
+        #who {
+                display: flex;
+                justify-content: flex-end;
+                padding: 0 20px;
+                max-width: 70vw;
+                
+                img {
+                    max-height: 90px;
+                    margin-right: 20px;
+                }
+
+                .title {
+                    align-self: flex-end;
+                    margin-bottom: 30px;
+
+                    h2 {
+                        font-family: 'Great Vibes Regular';
+                        font-size: 3.5em;
+                        color: #f78b20;
+                    }
+
+                    p {
+                        float: right;
+                        font-weight: bold;
+                    }
+                }
+        }
+
+        #presentation {
+            text-align: justify;
+            max-width: 70vw;
+            margin: auto;
+            padding: 50px;
+            background-color: #f78b20;
+            color: #fff;
+        }
+    }
+}
+
+#section-promo {
+
+    #promo {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .item {
+            margin: 10px;
+            text-align: center;
+            background-color: #f2f1f1;
+
+            img {
+                max-width: 200px;
+            }
+
+            p {
+                min-height: 20px;
+                padding-bottom: 5px;
+            }
+        }
+    }
+}
+
+#section-info {
+
+    #info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        article {
+            width: 45%;
+            height: 100vh;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            .content {
+                text-align: center;
+                max-height: 70vh;
+                
+                img {
+                    max-height: 450px;
+                    max-width: 100%;
+                }
+
+                h3 {
+                    font-size: 2.5em;
+                    margin: 50px auto;
+    
+                    span {
+                        display: block;
+                        font-family: 'Alternate Gothic No2 D Regular';
+                        padding-top: 10px;
+                    }
+                }
+
+                p {
+                    text-align: justify;
+                    margin: 25px;
+                    font-size: 0.8em;
+                }
+            }
+
+            button {
+                background-color: #fff;
+                color: #000;
+                margin-bottom: 50px;
+            }
+        }
+
+        .bc {
+            background-image: url('/assets/img/home/promo/renata-adrienn.png')
+        }
+    }
+}
+
+
+
+@media (max-width: 960px) {
+    #section-info {
+
+        #info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+    
+            article {
+                width: 100%;
+
+                .content {
+                    text-align: center;
+                    max-height: 70vh;
+                    
+                    img {
+                        max-height: 450px;
+                        max-width: 100%;
+                    }
+    
+                    h3 {
+                        font-size: 2.5em;
+                        margin: 50px auto;
+        
+                        span {
+                            display: block;
+                            font-family: 'Alternate Gothic No2 D Regular';
+                            padding-top: 10px;
+                        }
+                    }
+    
+                    p {
+                        text-align: justify;
+                        margin: 25px;
+                        font-size: 0.8em;
+                    }
+                }
+    
+                button {
+                    background-color: #fff;
+                    color: #000;
+                    margin-bottom: 50px;
+                }
+            }
+    
+            .bc {
+                background-image: url('/assets/img/home/promo/renata-adrienn.png')
+            }
+        }
+    }
+}

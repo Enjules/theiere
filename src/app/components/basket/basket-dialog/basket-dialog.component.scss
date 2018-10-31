@@ -1,0 +1,33 @@
+#resume {
+    width: 80vw;
+    margin: auto;
+
+    #header {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            list-style: none;
+
+            li {
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    list-style: none;
+
+                    li {
+                        height: 100px;
+                        padding: 5px;
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                            max-height: 100px;
+                        }
+                    }
+                }
+            }
+
+    }
+    
+}
