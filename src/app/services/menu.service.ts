@@ -58,6 +58,17 @@ export class MenuService {
     return this.mainMenu$.asObservable();
   }
 
+  getMainMenuLoggin(slug: string, menus: Menu[]): Observable<Menu> {
+    this.mainMenu = menus.find(
+      menu => {
+        return slug === menu.slug;
+      }
+    );
+
+    this.mainMenu$.next(this.mainMenu);
+    return this.mainMenu$.asObservable();
+  }
+
   getCategoriesMenu(slug: string, menus: Menu[]): Observable<Menu> {
     this.categoriesMenu = menus.find(
       menu => {

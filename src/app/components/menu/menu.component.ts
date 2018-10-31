@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
 
   menus: Menu[];
   mainMenu: Menu;
+  mainMenuLoggin: Menu;
   categoriesMenu: Menu;
 
   constructor(
@@ -29,6 +30,7 @@ export class MenuComponent implements OnInit {
       menus => {
         console.log('** menus **', menus);
         this.getMainMenu(menus);
+        this.getMainMenuLoggin(menus);
         this.getCategoriesMenu(menus);
       }
     );
@@ -42,6 +44,18 @@ export class MenuComponent implements OnInit {
     this.menuService.getMainMenu(slug, menus).subscribe(
       menu => {
         this.mainMenu = menu;
+      }
+    );
+  }
+
+  getMainMenuLoggin(menus) {
+    this.getLogin();
+
+    const slug = this.login === 'anonymous' ? 'anonymous-left' : 'main-left';
+
+    this.menuService.getMainMenuLoggin(slug, menus).subscribe(
+      menu => {
+        this.mainMenuLoggin = menu;
       }
     );
   }

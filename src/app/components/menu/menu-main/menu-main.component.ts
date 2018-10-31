@@ -12,6 +12,10 @@ import { ProductService } from '../../../services/product.service';
 export class MenuMainComponent implements OnInit {
   @Input()
   menu: Menu;
+
+  @Input()
+  menuLoggin: Menu;
+
   basket;
 
   logo_blanc_soeurs_theieres = '/assets/img/logo/logo_blanc_soeurs_theieres.png';
@@ -21,7 +25,7 @@ export class MenuMainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('** mainMenu **', this.menu);
+    console.log('** menuLoggin **', this.menuLoggin);
     this.getBasket();
   }
 

@@ -18,12 +18,18 @@ import { MenuCategoriesComponent } from './components/menu/menu-categories/menu-
 import { CategoryComponent } from './components/category/category.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { BasketDialogComponent } from './components/basket/basket-dialog/basket-dialog.component';
+import { AccountComponent } from './components/account/account.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { OrderComponent } from './components/account/order/order.component';
 
 
 @NgModule({
   declarations: [
   AuthComponent,
   LoginComponent,
+  AccountComponent,
+  ProfileComponent,
+  OrderComponent,
   RegisterComponent,
   MenuComponent,
   MenuMainComponent,
@@ -53,6 +59,9 @@ import { BasketDialogComponent } from './components/basket/basket-dialog/basket-
     AuthComponent,
     LoginComponent,
     RegisterComponent,
+    AccountComponent,
+    ProfileComponent,
+    OrderComponent,
     CategoryComponent,
     ContactComponent,
     BasketDialogComponent

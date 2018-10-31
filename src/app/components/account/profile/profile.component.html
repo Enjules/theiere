@@ -1,0 +1,27 @@
+<mat-card *ngIf="!inEditMode">
+  <mat-card-header>
+    <mat-card-content>
+        <mat-card-title>Mes informations</mat-card-title>
+    </mat-card-content>
+  </mat-card-header>
+    <mat-card-content>
+      <p>{{ user.civility}} {{ user.name}}</p>
+      <p>{{ user.email}}</p>
+    </mat-card-content>
+
+    <mat-card-content>
+    <mat-slide-toggle [(ngModel)]="user.subscribeToNewsletter">Newsletter</mat-slide-toggle>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="editProfile()">Editer</button>
+    <button mat-button (click)="logOut()">Se déconnecter</button>
+  </mat-card-actions>
+</mat-card>
+
+
+
+<div *ngIf="inEditMode">
+  <p style="color: red; font-size: 2em;">Ton form ici </p>
+
+  <button mat-button (click)="editProfile()">Valider</button>
+</div>

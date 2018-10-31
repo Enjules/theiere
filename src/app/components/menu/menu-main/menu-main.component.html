@@ -1,4 +1,13 @@
 <div class="menu">
+
+  <div class="item" *ngFor="let option of menuLoggin.options">
+    <button mat-button color="primary" [routerLink]="option.route">
+      <span *ngIf="option.slug === 'basket'" [matBadge]="basket.length" matBadgeOverlap="false">{{
+        option.content.title[0].fr }}</span>
+      <span *ngIf="option.slug != 'basket'">{{ option.content.title[0].fr }}</span>
+    </button>
+  </div>
+
   <div class="item">
     <mat-form-field>
       <input type="search" matInput placeholder="Recherche">
@@ -6,19 +15,20 @@
     </mat-form-field>
   </div>
   <div class="item">
-      <a  routerLink="/">
+    <a routerLink="/">
       <img [src]="logo_blanc_soeurs_theieres" alt="">
-      </a>
+    </a>
   </div>
 
   <div class="item" *ngFor="let option of menu.options">
     <button mat-button color="primary" [routerLink]="option.route">
-      <span *ngIf="option.slug === 'basket'" [matBadge]="basket.length" matBadgeOverlap="false">{{ option.content.title[0].fr }}</span>
+      <span *ngIf="option.slug === 'basket'" [matBadge]="basket.length" matBadgeOverlap="false">{{
+        option.content.title[0].fr }}</span>
       <span *ngIf="option.slug != 'basket'">{{ option.content.title[0].fr }}</span>
     </button>
   </div>
 
-<!--
+  <!--
   <div class="item">
     <button mat-button color="primary" (click)="openDialog()">
       Se connecter
