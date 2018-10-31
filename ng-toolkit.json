@@ -1,0 +1,7 @@
+{
+  "universal": {
+    "project": "theiere",
+    "skipInstall": false,
+    "directory": "."
+  }
+}
