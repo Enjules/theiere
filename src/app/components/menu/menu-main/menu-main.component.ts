@@ -25,7 +25,8 @@ export class MenuMainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('** menuLoggin **', this.menuLoggin);
+    console.log('** menu in menu-main **', this.menu);
+    console.log('** menuLoggin in menu-main **', this.menuLoggin);
     this.getBasket();
   }
 

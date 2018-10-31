@@ -18,6 +18,9 @@ export class MenuService {
   mainMenu: Menu;
   mainMenu$ = new BehaviorSubject<Menu>(this.mainMenu);
 
+  mainMenuLoggin: Menu;
+  mainMenuLoggin$ = new BehaviorSubject<Menu>(this.mainMenu);
+
   categoriesMenu: Menu;
   categoriesMenu$ = new BehaviorSubject<Menu>(this.categoriesMenu);
 
@@ -31,7 +34,6 @@ export class MenuService {
 
   getMenus(): Observable<Menu[]> {
     this.menus = JSON.parse(localStorage.getItem('menus'));
-    console.log('** menus in service **', this.menus);
     this.menus$.next(this.menus);
     return this.menus$.asObservable();
 
@@ -59,14 +61,14 @@ export class MenuService {
   }
 
   getMainMenuLoggin(slug: string, menus: Menu[]): Observable<Menu> {
-    this.mainMenu = menus.find(
+    this.mainMenuLoggin = menus.find(
       menu => {
         return slug === menu.slug;
       }
     );
 
-    this.mainMenu$.next(this.mainMenu);
-    return this.mainMenu$.asObservable();
+    this.mainMenuLoggin$.next(this.mainMenuLoggin);
+    return this.mainMenuLoggin$.asObservable();
   }
 
   getCategoriesMenu(slug: string, menus: Menu[]): Observable<Menu> {

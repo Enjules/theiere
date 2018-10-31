@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { MenuService } from 'src/app/services/menu.service';
+
+import { User } from '../../../models/User';
+
+import { AuthService } from '../../../services/auth.service';
+import { MenuService } from '../../../services/menu.service';
 
 @Component({
   selector: 'app-profile',
