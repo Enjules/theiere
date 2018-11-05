@@ -17,16 +17,16 @@ export class MenuMainComponent implements OnInit {
   menuLoggin: Menu;
 
   basket;
-
   logo_blanc_soeurs_theieres = '/assets/img/logo/logo_blanc_soeurs_theieres.png';
+  disableBtn: boolean;
 
   constructor(
     private productService: ProductService
   ) {}
 
   ngOnInit() {
-    console.log('** menu in menu-main **', this.menu);
-    console.log('** menuLoggin in menu-main **', this.menuLoggin);
+    // console.log('** menu in menu-main **', this.menu);
+    // console.log('** menuLoggin in menu-main **', this.menuLoggin);
     this.getBasket();
   }
 
@@ -34,6 +34,7 @@ export class MenuMainComponent implements OnInit {
     this.productService.getBasket().subscribe (
       basket => {
         this.basket = basket;
+        this.disableBtn = this.basket.length ? false : true;
       }
     );
   }

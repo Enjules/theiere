@@ -3,37 +3,51 @@ import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Product } from '../models/Product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   apiUrl = 'https://api.lessoeurstheiere.com';
-  products;
+  products: Product[];
+  product: Product;
 
-  basket = [];
-  basket$ = new BehaviorSubject<any[]>(this.basket);
+  basket;
+  basket$ = new BehaviorSubject<Product[]>(this.basket);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
     private httpClient: HttpClient
-  ) { }
+  ) {
+    this.product = new Product();
+  }
 
 
-  getProductsByCategory(slug) {
-    return this.httpClient.get(`${this.apiUrl}/category/${slug}`)
+  getProductsByCategory(slug): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.apiUrl}/category/${slug}`)
       .pipe(
         map(res => {
-          this.products = res['categoryProducts'];
-
+          this.products = res['categoryProducts'].map((product) => new Product().deserialize(product.content, product.slug));
           return this.products;
+        }),
+      );
+  }
+
+  getProductBySlug(slug): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.apiUrl}/product/${slug}`)
+      .pipe(
+        map(res => {
+          this.product.deserialize(res['product']);
+          return this.product;
         })
       );
   }
 
-  getBasket(): Observable<any[]> {
+  getBasket(): Observable<Product[]> {
     if (isPlatformBrowser(this.platformId)) {
       if (JSON.parse(localStorage.getItem('basket'))) {
-        this.basket = JSON.parse(localStorage.getItem('basket'));
+        const data = JSON.parse(localStorage.getItem('basket'));
+        this.basket = data;
       } else {
         this.basket = [];
       }

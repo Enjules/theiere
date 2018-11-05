@@ -2,18 +2,18 @@
   <mat-card *ngFor="let product of products">
     <mat-card-header>
       <mat-card-title>
-        {{ product.content.libelle.fr }}
+        {{ product.libelle.fr }}
         <span class="right">
-          {{ product.content.pricing[0].ttc }} €
+          {{ product.pricing.ttc }} €
         </span>
       </mat-card-title>
 
       <mat-card-subtitle>
-        <div *ngIf="product.content.origin">
-          Origine: {{ product.content.origin.fr }}
+        <div *ngIf="product.origin">
+          Origine: {{ product.origin }}
         </div>
 
-        Reference: {{ product.content.reference }}
+        Reference: {{ product.reference }}
       </mat-card-subtitle>
     </mat-card-header>
 
@@ -23,12 +23,12 @@
     <img mat-card-image src="assets/img/home/promo/promo_folies_grillades.jpg" alt="PROMOTIONS">
     <mat-card-content>
       <p>
-        {{ product.content.description.fr }}
+        {{ product.description }}
       </p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
-      <button mat-button (click)="getBasket()">EN SAVOIR PLUS</button>
+      <button mat-button [routerLink]="['/product', product.slug]">EN SAVOIR PLUS</button>
     </mat-card-actions>
   </mat-card>
 </div>

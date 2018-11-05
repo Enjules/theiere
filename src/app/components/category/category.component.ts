@@ -34,7 +34,6 @@ export class CategoryComponent implements OnInit {
     this.productService.getProductsByCategory(slug).subscribe(
       products => {
         this.products = products;
-        console.log('Products: ', this.products);
       }
     );
   }

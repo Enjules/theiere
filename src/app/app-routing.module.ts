@@ -6,6 +6,7 @@ import { BasketDialogComponent } from './components/basket/basket-dialog/basket-
 import { ContactComponent } from './components/contact/contact.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AccountComponent } from './components/account/account.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'Basket', component: BasketDialogComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'Category/:slug', component: CategoryComponent },
+  { path: 'product/:slug', component: ProductDetailsComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

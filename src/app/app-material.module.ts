@@ -18,7 +18,9 @@ import {
   MatSlideToggleModule,
   MatSelectModule,
   MatSliderModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatTableModule,
+  MatStepperModule
 } from '@angular/material';
 
 @NgModule({
@@ -42,7 +44,9 @@ import {
     MatSlideToggleModule,
     MatSelectModule,
     MatSliderModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTableModule,
+    MatStepperModule
   ],
   exports: [
     CommonModule,
@@ -62,7 +66,9 @@ import {
     MatSlideToggleModule,
     MatSelectModule,
     MatSliderModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTableModule,
+    MatStepperModule
   ],
   providers: [],
 })

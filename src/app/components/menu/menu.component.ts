@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
   getMenus() {
     this.menuService.getMenus().subscribe(
       menus => {
-        console.log('** menus **', menus);
+        // console.log('** menus **', menus);
         this.getMainMenu(menus);
         this.getMainMenuLoggin(menus);
         this.getCategoriesMenu(menus);

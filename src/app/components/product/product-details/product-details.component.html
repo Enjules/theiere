@@ -1,0 +1,33 @@
+<div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ product?.libelle }}
+          <span class="right">
+            {{ product?.pricing.ttc }} €
+          </span>
+        </mat-card-title>
+  
+        <mat-card-subtitle>
+          <div *ngIf="product?.origin">
+            Origine: {{ product?.origin }}
+          </div>
+  
+          Reference: {{ product?.reference }}
+        </mat-card-subtitle>
+      </mat-card-header>
+  
+      <p>
+        
+      </p>
+      <img mat-card-image src="assets/img/home/promo/promo_folies_grillades.jpg" alt="PROMOTIONS">
+      <mat-card-content>
+        <p>
+          {{ product?.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
