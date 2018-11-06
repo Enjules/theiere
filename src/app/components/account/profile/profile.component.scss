@@ -1,3 +1,68 @@
 mat-card {
     margin: auto;
+    padding-left: 25px;
+
+    mat-card-content {
+        margin: 25px 0 !important;
+    }
+}
+
+mat-expansion-panel {
+    max-width: 40vw;
+    margin-top: 20px;
+
+    mat-expansion-panel-header {
+        height: 34px !important;
+
+        mat-panel-title {
+            font-size: 14px;
+            color: #ff5722;
+        }
+    }
+
+}
+
+mat-card-title {
+    font-size: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#my-informations {
+
+}
+
+.gras {
+    font-weight: 600;
+    padding-bottom: 4px;
+}
+
+#adress-card-content {
+    display: flex;
+
+    .adress {
+        margin: 25px;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+
+    mat-card-actions  {
+        padding: 0 30px 0 0;
+    }
+}
+
+#logout-button {
+    text-align: center;
+}
+
+#edit-adress {
+
 }

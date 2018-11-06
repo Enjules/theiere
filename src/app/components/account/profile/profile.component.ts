@@ -5,6 +5,7 @@ import { User } from '../../../models/User';
 
 import { AuthService } from '../../../services/auth.service';
 import { MenuService } from '../../../services/menu.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,10 @@ import { MenuService } from '../../../services/menu.service';
 export class ProfileComponent implements OnInit {
   user: User;
   inEditMode: boolean;
+  passwordForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private auth: AuthService,
     private menuService: MenuService,
     private router: Router
@@ -25,6 +28,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.createForm();
   }
 
   logOut() {
@@ -48,7 +52,14 @@ export class ProfileComponent implements OnInit {
   }
 
   test() {
-    console.log('User: ', this.user);
+    console.log('User: ', this.passwordForm);
   }
 
+  createForm(): any {
+    this.passwordForm = this.fb.group({
+      currentPassword: ['', [Validators.required, Validators.minLength(6)]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      newPasswordConfirm: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 }
