@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$pyrene-theme-primary: mat-palette($mat-deep-orange);
+$pyrene-theme-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$pyrene-theme-warn:    mat-palette($mat-red);
+
+$pyrene-theme: mat-light-theme($pyrene-theme-primary, $pyrene-theme-accent, $pyrene-theme-warn);
+
+@include angular-material-theme($pyrene-theme);

@@ -42,6 +42,9 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.addToBasket(product).subscribe(
       basket => {
         console.log('** basket **', basket);
+      },
+      err => {
+        console.error(err);
       }
     );
   }

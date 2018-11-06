@@ -44,11 +44,16 @@ export class BasketDialogComponent implements OnInit {
   }
 
   getTotalCost() {
-    return this.basket.map(product => {
+    if (this.basket.length) {
+          return this.basket.map(product => {
       return product.pricing.ttc * product.pricing.quantity;
     }).reduce((acc, value) => {
       return acc + value;
     });
+    } else {
+      return 0;
+    }
+
   }
 
 }

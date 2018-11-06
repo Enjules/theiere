@@ -51,7 +51,7 @@
         <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
       </table>
 
-      <div style="float:right;">
+      <div style="float:right;" *ngIf="basket.length">
         <button mat-stroked-button matStepperNext>Suivant</button>
       </div>
     </section>
