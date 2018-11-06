@@ -22,6 +22,7 @@ import { AccountComponent } from './components/account/account.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
 import { OrderComponent } from './components/account/order/order.component';
 import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
+import { MenuTestComponent } from './test/menu-test/menu-test.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ProductDetailsComponent } from './components/product/product-details/pr
   CategoryComponent,
   ContactComponent,
   BasketDialogComponent,
-  ProductDetailsComponent
+  ProductDetailsComponent,
+  MenuTestComponent
 ],
   imports: [
     AppRoutingModule,
@@ -67,7 +69,8 @@ import { ProductDetailsComponent } from './components/product/product-details/pr
     CategoryComponent,
     ContactComponent,
     BasketDialogComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    MenuTestComponent
   ],
   providers: [
   ],

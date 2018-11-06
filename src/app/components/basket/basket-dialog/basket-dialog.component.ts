@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
-import { Product } from 'src/app/models/Product';
+import { Product } from '../../../models/Product';
 
 @Component({
   selector: 'app-basket-dialog',
@@ -10,15 +10,16 @@ import { Product } from 'src/app/models/Product';
 export class BasketDialogComponent implements OnInit {
   basket: Product[];
   displayedColumns: string[] = ['libelle', 'description', 'quantity', 'cost'];
-  selectedValue = 1;
-  quantity = [1, 2, 3, 4, 5];
+  selectedValue: number;
+  maxPeerOrder = Array.from({ length: 50 }).map((_, i) => `${i + 1}`);
   isLinear = false;
 
   constructor(
     private productService: ProductService
   ) {
     this.basket = [new Product];
-   }
+    this.selectedValue = +this.maxPeerOrder[5];
+  }
 
   ngOnInit() {
     this.getBasket();
@@ -32,8 +33,20 @@ export class BasketDialogComponent implements OnInit {
     );
   }
 
+  getMaxPeerOrder(product: Product) {
+    if (product.pricing.stock < product.pricing.maxPerOrder) {
+      this.maxPeerOrder = Array.from({ length: product.pricing.stock }).map((_, i) => `${i + 1}`);
+    } else {
+      this.maxPeerOrder = Array.from({ length: product.pricing.maxPerOrder }).map((_, i) => `${i + 1}`);
+    }
+
+    return this.maxPeerOrder;
+  }
+
   getTotalCost() {
-    return this.basket.map(t => t.pricing.ttc).reduce((acc, value) => {
+    return this.basket.map(product => {
+      return product.pricing.ttc * product.pricing.quantity;
+    }).reduce((acc, value) => {
       return acc + value;
     });
   }

@@ -7,19 +7,27 @@
     text-align: center;
   }
 
-  img {
-    max-height: 100px;
-}
 
 th.mat-header-cell {
     text-align: center;
 }
 
 mat-select {
-    width: 50px;
+    min-width: 100px;
 }
 
 table {
     min-width: 80%;
     margin: 20px auto;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        max-height: 100px;
+        max-width: 100px;
+    }
 }
