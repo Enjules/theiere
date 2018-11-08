@@ -1,0 +1,128 @@
+.container {
+
+
+    mat-card {
+        background-color: #f1f1f1;
+        display: flex;
+        flex-wrap: wrap;
+
+        .image {
+            max-width: 30%;
+            padding: 25px;
+        }
+
+        .content {
+            max-width: 50%;
+            align-self: flex-end;
+
+            mat-card-content {
+                margin-top: 20px;
+            }
+
+            #quantity {
+                margin: 0 16px;
+                display: flex;
+
+                #quantity-btn-grp {
+                    display: flex;
+    
+                    div {
+                        background: white;
+                        margin: 5px;
+                    }
+    
+                    button {
+                        max-width: 25px;
+                    }
+    
+                    .number {
+                        border: 1px solid;
+                        border-color: rgba(0, 0, 0, 0.12);
+                        border-radius: 4px;
+                        min-width: 100px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                #prix {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 50px;
+                    
+                    p {
+                        font-size: 30px;
+                    }
+                }
+            }
+
+            #desc {
+                margin: 20px 0 0 16px;
+
+                p {
+                    font-family: 'Open Sans Regular', 'arial', sans-serif;
+                    font-size: 14px;
+                    color: rgba(0, 0, 0, 0.54);
+                }
+            }
+
+            #stock-ref-button {
+                margin-top: 20px;
+            }
+
+            #stock-ref {
+                float: right;
+                margin: 10px;
+
+                #ref {
+
+                    p {
+                        font-family: 'Open Sans Regular', 'arial', sans-serif;
+                        font-size: 12px;
+                        color: rgba(0, 0, 0, 0.54);
+                    }
+                }
+    
+                .stock {
+                    display: flex;
+                    font-size: 19px;
+    
+                    p {
+                        margin-right: 20px;
+                    }
+                }
+    
+                #done {
+                    color: green;
+                }
+    
+                #clear {
+                    color: red;
+                }
+            }
+
+            #div-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                #button {
+                    height: 50px;
+                    width: 200px;
+                    margin: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .content {
+        max-width: 100% !important;
+    }
+    .image {
+        max-width: 100% !important;
+    }
+}

@@ -13,8 +13,10 @@ export class ProductService {
   products: Product[];
   product: Product;
 
-  basket;
+  basket: Product[];
   basket$ = new BehaviorSubject<Product[]>(this.basket);
+  
+  inBasket = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
     private httpClient: HttpClient
@@ -57,21 +59,50 @@ export class ProductService {
     return this.basket$.asObservable();
   }
 
-  addToBasket(product): Observable<any[]> {
+  addToBasket(product, quantity?): Observable<any[]> {
     if (isPlatformBrowser(this.platformId)) {
+      this.basket = [];
       if (JSON.parse(localStorage.getItem('basket'))) {
         this.basket = JSON.parse(localStorage.getItem('basket'));
-      } else {
-        this.basket = [];
+        this.getInBasket(product, this.basket)
+        console.log("il existe ? ", this.inBasket);
       }
     }
 
-    this.basket.push(product);
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('basket', JSON.stringify(this.basket));
+      if(this.inBasket){
+        this.updateProductBasket(product, this.basket);
+      } else {
+        this.basket.push(product);
+        localStorage.setItem('basket', JSON.stringify(this.basket));
+      }
     }
 
     this.basket$.next(this.basket);
     return this.basket$.asObservable();
+  }
+
+  getInBasket(product: Product, basket: Product[]) {
+    for(let p of basket) {
+      if(p.reference === product.reference) {
+        this.inBasket = true;
+      } else {
+        this.inBasket = false;
+      }
+    }
+  }
+
+  updateProductBasket(product: Product, basket: Product[]) {
+    for(let i = 0 ; i<basket.length ; i++) {
+      if(basket[i].reference === product.reference){
+        if(basket[i].order.quantity + product.order.quantity > product.pricing.maxPerOrder){
+          basket[i].order.quantity = product.pricing.maxPerOrder;
+        } else {
+          basket[i].order.quantity += product.order.quantity;
+        }
+      }
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    console.log("basket in service :", basket);
   }
 }

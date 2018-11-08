@@ -41,7 +41,7 @@ export class CategoryComponent implements OnInit {
   addToBasket(product) {
     this.productService.addToBasket(product).subscribe (
       basket => {
-        console.log('** basket **', basket);
+        // console.log('** basket **', basket);
       }
     );
   }

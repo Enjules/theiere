@@ -1,33 +1,65 @@
 <div class="container">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          {{ product?.libelle }}
-          <span class="right">
-            {{ product?.pricing.ttc }} €
-          </span>
-        </mat-card-title>
-  
-        <mat-card-subtitle>
-          <div *ngIf="product?.origin">
-            Origine: {{ product?.origin }}
-          </div>
-  
-          Reference: {{ product?.reference }}
-        </mat-card-subtitle>
-      </mat-card-header>
-  
-      <p>
-        
-      </p>
+  <mat-card>
+    <div class="image">
       <img mat-card-image src="assets/img/home/promo/promo_folies_grillades.jpg" alt="PROMOTIONS">
-      <mat-card-content>
-        <p>
-          {{ product?.description }}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+    </div>
+    <div class="content">
+      <div>
+        <mat-card-header>
+          <mat-card-title>
+            {{ product.libelle }}
+            <span class="right">
+              {{ product.pricing.ttc }} €
+            </span>
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            <p>{{ product.abstract }}</p>
+          </mat-card-subtitle>
+        </mat-card-header>
+      </div>
+      <div id="quantity">
+        <div id="quantity-btn-grp">
+          <div><button mat-stroked-button (click)="removeQuantityOrder()">
+              <p>-</p>
+            </button></div>
+          <div class="number">
+            <p>{{ quantity }}</p>
+          </div>
+          <div><button mat-stroked-button (click)="addQuantityOrder()">
+              <p>+</p>
+            </button></div>
+        </div>
+
+        <div id="prix">
+          <p>{{ totalPricing | currency:'EUR':'symbol':'1.2-2' }}</p>
+        </div>
+      </div>
+      <div id="desc">
+        <p>{{ product.description }}</p>
+      </div>
+      <div id="stock-ref-button">
+        <div id="stock-ref">
+          <div id="ref">
+              <p>{{ product.reference }}</p>
+          </div>
+          <div *ngIf="product.pricing.stock" class="stock" id="done">
+            <p>En stock</p>
+            <mat-icon>done</mat-icon>
+          </div>
+          <div *ngIf="!product.pricing.stock" class="stock" id="clear">
+            <p>Pas disponible</p>
+            <mat-icon>clear</mat-icon>
+          </div>
+        </div>
+        <div id="div-button">
+          <mat-card-actions>
+            <button id="button"  color="primary" mat-raised-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+          </mat-card-actions>
+        </div>
+      </div>
+    </div>
+
+
+  </mat-card>
+</div>
