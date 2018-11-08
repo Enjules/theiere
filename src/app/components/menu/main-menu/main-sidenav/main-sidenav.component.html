@@ -1,0 +1,28 @@
+<mat-nav-list id="sidenav-list">
+    <div class="item" [class.hide]="!tabletQuery.matches">
+      <mat-form-field>
+        <input type="search" matInput placeholder="Recherche">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="item" *ngFor="let option of mainMenuLoggin.options">
+      <button mat-button color="primary" [routerLink]="option.route" [class.hide]="!tabletQuery.matches" (click)="snav.toggle()">
+        <span *ngIf="option.slug === 'basket'" [matBadge]="basket.length" matBadgeOverlap="false">{{
+          option.content.title[0].fr }}</span>
+        <span *ngIf="option.slug != 'basket'">{{ option.content.title[0].fr }}</span>
+      </button>
+    </div>
+
+
+    <div class="item" *ngFor="let option of mainMenu.options" [class.hide]="!tabletQuery.matches">
+      <button *ngIf="option.slug === 'basket'" [disabled]="disableBtn" mat-button color="primary" [routerLink]="option.route"
+        (click)="snav.toggle()">
+        {{ option.content.title[0].fr }}
+      </button>
+
+      <button *ngIf="option.slug != 'basket'" mat-button color="primary" [routerLink]="option.route" (click)="snav.toggle()">
+        <span>{{ option.content.title[0].fr }}</span>
+      </button>
+    </div>
+  </mat-nav-list>

@@ -1,0 +1,40 @@
+<mat-toolbar class="example-toolbar menu">
+  <div [class.hide]="!tabletQuery.matches">
+    <button mat-icon-button  (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <div class="item" *ngFor="let option of mainMenuLoggin.options" [class.hide]="tabletQuery.matches">
+    <button mat-button color="primary" [routerLink]="option.route">
+      <span *ngIf="option.slug === 'basket'" [matBadge]="basket.length" matBadgeOverlap="false">{{
+        option.content.title[0].fr }}</span>
+      <span *ngIf="option.slug != 'basket'">{{ option.content.title[0].fr }}</span>
+    </button>
+  </div>
+
+  <div class="item" [class.hide]="tabletQuery.matches">
+    <mat-form-field>
+      <input type="search" matInput placeholder="Recherche">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="item" [class.logo-item-tablet]="tabletQuery.matches">
+    <a routerLink="/">
+      <img [src]="logo" alt="">
+    </a>
+  </div>
+
+  <div class="item" *ngFor="let option of mainMenu.options" [class.hide]="tabletQuery.matches">
+    
+    <button *ngIf="option.slug === 'basket'" [disabled]="disableBtn" mat-button color="primary" [routerLink]="option.route">
+        <span [matBadge]="basket.length" matBadgeOverlap="false">{{
+            option.content.title[0].fr }}</span>
+    </button>
+
+    <button *ngIf="option.slug != 'basket'" mat-button color="primary" [routerLink]="option.route">
+      <span>{{ option.content.title[0].fr }}</span>
+    </button>
+  </div>
+</mat-toolbar>

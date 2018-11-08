@@ -73,7 +73,7 @@ section {
 
         article {
             width: 45%;
-            height: 100vh;
+            height: 550px;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -82,10 +82,13 @@ section {
 
             .content {
                 text-align: center;
-                max-height: 70vh;
+                max-height: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
                 
                 img {
-                    max-height: 450px;
+                    max-height: 250px;
                     max-width: 100%;
                 }
 
@@ -103,7 +106,7 @@ section {
                 p {
                     text-align: justify;
                     margin: 25px;
-                    font-size: 0.8em;
+                    font-size: 1em;
                 }
             }
 

@@ -1,6 +1,36 @@
-<nav>
-  <app-menu-main [menu]="mainMenu" [menuLoggin]="mainMenuLoggin"></app-menu-main>
-  <app-menu-categories [menu]="categoriesMenu"></app-menu-categories>
-</nav>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <app-main-toolbar [snav]="snav" [mainMenu]="mainMenu" [mainMenuLoggin]="mainMenuLoggin" [tabletQuery]="tabletQuery" [logo]="logo"></app-main-toolbar>
 
-<router-outlet></router-outlet>
+  <app-submenu-toolbar [snav]="snav" [tabletQuery]="tabletQuery" [categoriesMenu]="categoriesMenu"></app-submenu-toolbar>
+
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 80 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="80">
+      
+      <app-main-sidenav [snav]="snav" [mainMenu]="mainMenu" [mainMenuLoggin]="mainMenuLoggin" [tabletQuery]="tabletQuery"></app-main-sidenav>
+
+      <mat-divider></mat-divider>
+
+      <app-submenu-sidenav [snav]="snav" [tabletQuery]="tabletQuery" [subMenu]="categoriesMenu"></app-submenu-sidenav>
+
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+
+
+<!--
+  <nav>
+    <app-menu-main [menu]="mainMenu" [menuLoggin]="mainMenuLoggin"></app-menu-main>
+    <app-menu-categories [menu]="categoriesMenu"></app-menu-categories>
+  </nav>
+  
+  <router-outlet></router-outlet>
+-->

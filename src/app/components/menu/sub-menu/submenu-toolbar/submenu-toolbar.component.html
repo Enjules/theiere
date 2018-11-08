@@ -1,0 +1,68 @@
+<div id="t" [class.hide]="tabletQuery.matches">
+  <mat-toolbar class="example-toolbar menu" color="primary">
+    <div class="item">
+      <button mat-button [matMenuTriggerFor]="theNavbar" #theTriggerNavbar="matMenuTrigger" color="primary"
+        [style.color]="theTriggerNavbar.menuOpen ? '#000' : '#fff'" [style.backgroundColor]="theTriggerNavbar.menuOpen ? '#fff' : '#ff5722'">
+        {{ categories[0].content.title.fr | uppercase }}
+      </button>
+
+      <mat-menu #theNavbar="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item *ngFor="let subMenu of categories[0].nodes" [routerLink]="[subMenu.route, subMenu.slug]">
+          {{ subMenu.content.title[0].fr | uppercase }}
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="item">
+      <button mat-button [matMenuTriggerFor]="infusionsNavbar" #infusionsTriggerNavbar="matMenuTrigger" [style.color]="infusionsTriggerNavbar.menuOpen ? '#000' : '#fff'"
+        [style.backgroundColor]="infusionsTriggerNavbar.menuOpen ? '#fff' : '#ff5722'">
+        {{ categories[1].content.title.fr | uppercase }}
+      </button>
+
+      <mat-menu #infusionsNavbar="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item *ngFor="let subMenu of categories[1].nodes" [routerLink]="[subMenu.route, subMenu.slug]">
+          {{ subMenu.content.title[0].fr | uppercase }}
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="item">
+      <button mat-button [matMenuTriggerFor]="accessoiresNavbar" #accessoiresTriggerNavbar="matMenuTrigger"
+        [style.color]="accessoiresTriggerNavbar.menuOpen ? '#000' : '#fff'" [style.backgroundColor]="accessoiresTriggerNavbar.menuOpen ? '#fff' : '#ff5722'">
+        {{ categories[2].content.title.fr | uppercase }}
+      </button>
+
+      <mat-menu #accessoiresNavbar="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item *ngFor="let subMenu of categories[2].nodes" [routerLink]="[subMenu.route, subMenu.slug]">
+          {{ subMenu.content.title[0].fr | uppercase }}
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="item">
+      <button mat-button [matMenuTriggerFor]="epicerieNavbar" #epicerieTriggerNavbar="matMenuTrigger" [style.color]="epicerieTriggerNavbar.menuOpen ? '#000' : '#fff'"
+        [style.backgroundColor]="epicerieTriggerNavbar.menuOpen ? '#fff' : '#ff5722'">
+        {{ categories[3].content.title.fr | uppercase }}
+      </button>
+
+      <mat-menu #epicerieNavbar="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item *ngFor="let subMenu of categories[3].nodes" [routerLink]="[subMenu.route, subMenu.slug]">
+          {{ subMenu.content.title[0].fr | uppercase }}
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="item">
+      <button mat-button [matMenuTriggerFor]="cafesNavbar" #cafesTriggerNavbar="matMenuTrigger" [style.color]="cafesTriggerNavbar.menuOpen ? '#000' : '#fff'"
+        [style.backgroundColor]="cafesTriggerNavbar.menuOpen ? '#fff' : '#ff5722'">
+        {{ categories[4].content.title.fr | uppercase }}
+      </button>
+
+      <mat-menu #cafesNavbar="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item *ngFor="let subMenu of categories[4].nodes" [routerLink]="[subMenu.route, subMenu.slug]">
+          {{ subMenu.content.title[0].fr | uppercase }}
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>

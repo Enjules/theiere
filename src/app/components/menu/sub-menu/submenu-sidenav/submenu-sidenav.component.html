@@ -1,0 +1,62 @@
+<mat-nav-list id="sidenav-list">
+    <h2 style="text-align: center">Nos Produits</h2>
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="theSidenav" #theT="matMenuTrigger" color="primary">
+      {{ categories[0].content.title.fr | uppercase }}
+    </button>
+
+    <mat-menu #theSidenav="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item *ngFor="let subMenu of categories[0].nodes" [routerLink]="[subMenu.route, subMenu.slug]"  (click)="snav.toggle()">
+        {{ subMenu.content.title[0].fr | uppercase }}
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="infusionsSidenav" #infusionsT="matMenuTrigger" color="primary">
+      {{ categories[1].content.title.fr | uppercase }}
+    </button>
+
+    <mat-menu #infusionsSidenav="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item *ngFor="let subMenu of categories[1].nodes" [routerLink]="[subMenu.route, subMenu.slug]" (click)="snav.toggle()">
+        {{ subMenu.content.title[0].fr | uppercase }}
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="accessoiresSidenav" #accessoiresT="matMenuTrigger" color="primary">
+      {{ categories[2].content.title.fr | uppercase }}
+    </button>
+
+    <mat-menu #accessoiresSidenav="matMenu" [overlapTrigger]="false" yPosition="below">
+      <button mat-menu-item *ngFor="let subMenu of categories[2].nodes" [routerLink]="[subMenu.route, subMenu.slug]" (click)="snav.toggle()">
+        {{ subMenu.content.title[0].fr | uppercase }}
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="epicerieSidenav" #epicerieT="matMenuTrigger" color="primary">
+      {{ categories[3].content.title.fr | uppercase }}
+    </button>
+
+    <mat-menu #epicerieSidenav="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item *ngFor="let subMenu of categories[3].nodes" [routerLink]="[subMenu.route, subMenu.slug]" (click)="snav.toggle()">
+        {{ subMenu.content.title[0].fr | uppercase }}
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="item">
+    <button mat-button [matMenuTriggerFor]="cafesSidenav" #cafesT="matMenuTrigger" color="primary">
+      {{ categories[4].content.title.fr | uppercase }}
+    </button>
+
+    <mat-menu #cafesSidenav="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item *ngFor="let subMenu of categories[4].nodes" [routerLink]="[subMenu.route, subMenu.slug]" (click)="snav.toggle()">
+        {{ subMenu.content.title[0].fr | uppercase }}
+      </button>
+    </mat-menu>
+  </div>
+</mat-nav-list>
