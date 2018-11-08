@@ -18,13 +18,16 @@
     margin: 0;
     padding: 0;
     font-family: 'Open Sans Regular', 'arial', sans-serif;
+    box-sizing: border-box;
 }
 
 h3 {
     font-family: 'Alternate Gothic No2 D Regular';
 }
 
-html, body { height: 100%; }
+html, body { 
+    height: 100%;
+ }
 body { margin: 0; font-family: Open Sans, sans-serif; }
 
 
@@ -56,4 +59,21 @@ body { margin: 0; font-family: Open Sans, sans-serif; }
 
 .hide {
     display: none;
+}
+
+.mat-form-field-label {
+    font-size: 15px !important;
+}
+
+.mat-form-field-label-wrapper {
+    top: -15px;
+}
+
+
+
+
+@media screen and (max-width: 960px) {
+    .container {
+        padding: 0px !important;
+    }
 }

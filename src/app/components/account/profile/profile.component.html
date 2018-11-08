@@ -16,7 +16,8 @@
       <mat-card-content>
         <p>{{ user.civility}} {{ user.name}}</p>
         <p>{{ user.email }}</p>
-        <mat-accordion>
+
+        <mat-accordion  *ngIf="false">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -42,7 +43,7 @@
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions *ngIf="false">
         <button mat-button mat-stroked-button color="primary" (click)="editProfile()">
           Modifier mes informations
         </button>
@@ -85,7 +86,7 @@
 
 
 <div *ngIf="inEditMode">
-  <p style="color: red; font-size: 2em;">Ton form ici </p>
+  <p style="color: red; font-size: 2em; padding-left: 50px">En cours ... </p>
 
   <button mat-button (click)="editProfile()">Valider</button>
 </div>

@@ -1,34 +1,37 @@
 <div class="container">
   <mat-card *ngFor="let product of products">
-    <mat-card-header>
+    <mat-card-header [routerLink]="['/product', product.slug]">
       <mat-card-title>
-        {{ product.libelle.fr }}
+        <div class="title">
+          {{ product.title }}
+        </div>
         <span class="right">
           {{ product.pricing.ttc }} €
         </span>
       </mat-card-title>
 
       <mat-card-subtitle>
-        <div *ngIf="product.origin">
-          Origine: {{ product.origin }}
+        <div *ngIf="product?.origin">
+          Origine: {{ product?.origin }}
         </div>
 
-        Reference: {{ product.reference }}
+        <div class="ref">
+          Reference: {{ product.reference }}
+        </div>
       </mat-card-subtitle>
     </mat-card-header>
+    <img mat-card-image  [src]="product.image.url" [alt]="product.image.alt" [routerLink]="['/product', product.slug]">
 
-    <p>
-      
-    </p>
-    <img mat-card-image src="assets/img/home/promo/promo_folies_grillades.jpg" alt="PROMOTIONS">
-    <mat-card-content>
-      <p>
+    <mat-card-content [routerLink]="['/product', product.slug]">
+      <div class="description">
         {{ product.description }}
-      </p>
+      </div>
     </mat-card-content>
+
+    
     <mat-card-actions>
+        <mat-divider></mat-divider>
       <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
-      <button mat-button [routerLink]="['/product', product.slug]">EN SAVOIR PLUS</button>
     </mat-card-actions>
   </mat-card>
 </div>

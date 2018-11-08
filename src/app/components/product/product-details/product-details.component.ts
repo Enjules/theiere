@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   route: any;
   quantity: number;
   totalPricing: number;
+  addedInBasket: boolean;
 
   constructor(
     private productService: ProductService,
@@ -22,6 +23,7 @@ export class ProductDetailsComponent implements OnInit {
     this.route = route;
     this.product = new Product;
     this.quantity = 1;
+    this.addedInBasket = false;
   }
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class ProductDetailsComponent implements OnInit {
       product => {
         this.product = product;
         this.totalPricing = this.product.pricing.ttc;
-        // console.log(this.product);
+       // console.log(this.product);
       }
     );
   }
@@ -49,6 +51,12 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.addToBasket(product).subscribe(
       basket => {
         // console.log('** basket **', basket);
+        this.addedInBasket = true;
+
+        setTimeout(() => {
+          this.addedInBasket = false;
+        }, 1000);
+
       },
       err => {
         console.error(err);
@@ -57,15 +65,15 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addQuantityOrder() {
-    if(this.quantity < this.product.pricing.maxPerOrder){
-      this.quantity ++;
+    if (this.quantity < this.product.pricing.maxPerOrder) {
+      this.quantity++;
       this.totalPricing = this.product.pricing.ttc * this.quantity;
     }
   }
 
   removeQuantityOrder() {
-    if(this.quantity > 1){
-      this.quantity --;
+    if (this.quantity > 1) {
+      this.quantity--;
       this.totalPricing = this.product.pricing.ttc * this.quantity;
     }
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../models/Product';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basket-dialog',
@@ -12,9 +13,14 @@ export class BasketDialogComponent implements OnInit {
   displayedColumns: string[] = ['libelle', 'description', 'quantity', 'cost'];
   selectedValue: number;
   maxPeerOrder = Array.from({ length: 50 }).map((_, i) => `${i + 1}`);
-  isLinear = false;
+  isLinear = true;
+
+  firstFormGroup: FormGroup;
+  billingAdressFormGroup: FormGroup;
+  delivryAdressFormGroup: FormGroup;
 
   constructor(
+    private _formBuilder: FormBuilder,
     private productService: ProductService
   ) {
     this.basket = [new Product];
@@ -22,8 +28,19 @@ export class BasketDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      quantity: [false, Validators.required]
+    });
+
+    this.delivryAdressFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
+    this.billingAdressFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
     this.getBasket();
-    console.log(this.basket);
   }
 
   getBasket() {
@@ -46,18 +63,14 @@ export class BasketDialogComponent implements OnInit {
 
   getTotalCost() {
     if (this.basket.length) {
-          return this.basket.map(product => {
-      return product.pricing.ttc * product.order.quantity;
-    }).reduce((acc, value) => {
-      return acc + value;
-    });
+      return this.basket.map(product => {
+        return product.pricing.ttc * product.order.quantity;
+      }).reduce((acc, value) => {
+        return acc + value;
+      });
     } else {
       return 0;
     }
-  }
-
-  quantityChange() {
-    
   }
 
 }

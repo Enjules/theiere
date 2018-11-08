@@ -70,7 +70,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuService.getMainMenu(slug, menus).subscribe(
       menu => {
         this.mainMenu = menu;
-        console.log('** mainMenu **', this.mainMenu);
+        // console.log('** mainMenu **', this.mainMenu);
       }
     );
   }
@@ -83,7 +83,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuService.getMainMenuLoggin(slug, menus).subscribe(
       menu => {
         this.mainMenuLoggin = menu;
-        console.log('** mainMenuLoggin **', this.mainMenuLoggin);
+        // console.log('** mainMenuLoggin **', this.mainMenuLoggin);
 
       }
     );

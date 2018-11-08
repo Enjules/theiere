@@ -21,7 +21,8 @@ import {
   MatBadgeModule,
   MatTableModule,
   MatStepperModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -48,7 +49,8 @@ import {
     MatBadgeModule,
     MatTableModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
@@ -71,7 +73,8 @@ import {
     MatBadgeModule,
     MatTableModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   providers: [],
 })

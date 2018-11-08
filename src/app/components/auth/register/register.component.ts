@@ -11,8 +11,10 @@ import { MenuService } from '../../../services/menu.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   submitted = false;
+
+  civilities = ['Mme', 'Mr'];
 
   constructor(
     private fb: FormBuilder,
@@ -27,11 +29,11 @@ export class RegisterComponent implements OnInit {
 
 
   get f() {
-    return this.loginForm.controls;
+    return this.registerForm.controls;
   }
 
   createForm(): any {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -44,7 +46,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.submitted = true;
-    this.auth.register(this.loginForm.value).subscribe(res => {
+    this.auth.register(this.registerForm.value).subscribe(res => {
       this.menuService.getMenus().subscribe(
         menus => {
           if (menus) {

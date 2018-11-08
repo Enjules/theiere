@@ -55,13 +55,14 @@ export class AuthService {
             this.user = res['userDetails'];
             this.user.name = res['name'];
             this.user.email = res['login'];
+            this.user.id = res['id'];
 
             localStorage.setItem('user', JSON.stringify(this.user));
             localStorage.setItem('login', JSON.stringify(res['login']));
 
             this.menuService.setMenus(res['menus']);
           }
-          return res;
+          return this.user;
         })
       );
   }
@@ -89,9 +90,17 @@ export class AuthService {
       .pipe(
         map(res => {
           if (res) {
-            console.log('auth', res);
+            this.user = res['userDetails'];
+            this.user.name = res['name'];
+            this.user.email = res['login'];
+            this.user.id = res['id'];
+
+            localStorage.setItem('user', JSON.stringify(this.user));
+            localStorage.setItem('login', JSON.stringify(res['login']));
+
+            this.menuService.setMenus(res['menus']);
           }
-          return res;
+          return this.user;
         })
       );
   }

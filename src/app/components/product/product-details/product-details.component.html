@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card>
     <div class="image">
-      <img mat-card-image src="assets/img/home/promo/promo_folies_grillades.jpg" alt="PROMOTIONS">
+      <img mat-card-image [src]="product.image.url" alt="PROMOTIONS">
     </div>
     <div class="content">
       <div>
@@ -54,12 +54,13 @@
         </div>
         <div id="div-button">
           <mat-card-actions>
-            <button id="button"  color="primary" mat-raised-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+            <button id="button"  color="primary" mat-raised-button (click)="addToBasket(product)">
+              AJOUTER AU PANIER
+            <mat-icon *ngIf="addedInBasket">done</mat-icon>
+            </button>
           </mat-card-actions>
         </div>
       </div>
     </div>
-
-
   </mat-card>
 </div>

@@ -25,14 +25,15 @@
         <ng-container matColumnDef="quantity">
           <th mat-header-cell *matHeaderCellDef> Quantité </th>
           <td mat-cell *matCellDef="let basket">
-            <mat-select placeholder="Quantité" (change)="quantityChange($event)" [(ngModel)]="basket.order.quantity">
-              <mat-option *ngFor="let q of getMaxPeerOrder(basket)" [value]="q">
-                {{q}}
-              </mat-option>
-            </mat-select>
-            <p>Quantité: {{basket.order.quantity}}</p>
+
+                <mat-select placeholder="{{ basket.order.quantity }}" [(value)]="basket.order.quantity">
+                  <mat-option *ngFor="let q of getMaxPeerOrder(basket)" [value]="q">
+                    {{q}}
+                  </mat-option>
+                </mat-select>
           </td>
           <td mat-footer-cell *matFooterCellDef> </td>
+
         </ng-container>
 
         <!-- Cost Column -->
@@ -51,28 +52,45 @@
         <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
       </table>
 
-      <div style="float:right;" *ngIf="basket.length">
+      <div style="float:right;" *ngIf="false">
         <button mat-stroked-button matStepperNext>Suivant</button>
       </div>
     </section>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Addresse</ng-template>
-    Addresse (ToDo)
-  </mat-step>
+  <div *ngIf="false">
+    <mat-step [stepControl]="billingAdressFormGroup">
+      <form [formGroup]="billingAdressFormGroup">
+        <ng-template matStepLabel>Addresse</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="En cours ..." formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step>
+      <form [formGroup]="delivryAdressFormGroup">
+        <ng-template matStepLabel>Livraison</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="En cours ..." formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step>
+      <ng-template matStepLabel>Paiement</ng-template>
+      Paiement (ToDo)
+      <div>
+        <button mat-button matStepperPrevious>Retour</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </div>
 
-  <mat-step>
-    <ng-template matStepLabel>Livraison</ng-template>
-    Livraison (ToDo)
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Paiement</ng-template>
-    Paiement (ToDo)
-    <div>
-      <button mat-button matStepperPrevious>Retour</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
 </mat-horizontal-stepper>

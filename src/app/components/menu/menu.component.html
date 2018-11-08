@@ -4,9 +4,9 @@
   <app-submenu-toolbar [snav]="snav" [tabletQuery]="tabletQuery" [categoriesMenu]="categoriesMenu"></app-submenu-toolbar>
 
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 80 : 0">
+  <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="80">
+      fixedTopGap="100">
       
       <app-main-sidenav [snav]="snav" [mainMenu]="mainMenu" [mainMenuLoggin]="mainMenuLoggin" [tabletQuery]="tabletQuery"></app-main-sidenav>
 

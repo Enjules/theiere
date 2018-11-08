@@ -12,8 +12,7 @@
         }
 
         .content {
-            max-width: 50%;
-            align-self: flex-end;
+            max-width: 70%;
 
             mat-card-content {
                 margin-top: 20px;
@@ -22,6 +21,8 @@
             #quantity {
                 margin: 0 16px;
                 display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
 
                 #quantity-btn-grp {
                     display: flex;
@@ -50,7 +51,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-left: 50px;
+                    margin-left: 10px;
                     
                     p {
                         font-size: 30px;
@@ -70,11 +71,12 @@
 
             #stock-ref-button {
                 margin-top: 20px;
+                display: flex;
+                flex-direction: column;
             }
 
             #stock-ref {
-                float: right;
-                margin: 10px;
+                align-self: flex-end;
 
                 #ref {
 

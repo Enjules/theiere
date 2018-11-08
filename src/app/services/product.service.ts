@@ -15,7 +15,7 @@ export class ProductService {
 
   basket: Product[];
   basket$ = new BehaviorSubject<Product[]>(this.basket);
-  
+
   inBasket = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
@@ -29,7 +29,16 @@ export class ProductService {
     return this.httpClient.get<Product[]>(`${this.apiUrl}/category/${slug}`)
       .pipe(
         map(res => {
-          this.products = res['categoryProducts'].map((product) => new Product().deserialize(product.content, product.slug));
+          this.products = [];
+          res['categoryProducts'].map(
+            product => {
+              const data = [];
+              data.push(product.content, product.decorators);
+
+              this.products.push(new Product().deserialize(data, product.slug));
+            }
+          );
+
           return this.products;
         }),
       );
@@ -39,7 +48,10 @@ export class ProductService {
     return this.httpClient.get<Product>(`${this.apiUrl}/product/${slug}`)
       .pipe(
         map(res => {
-          this.product.deserialize(res['product']);
+          const data = [];
+          data.push(res['product'], res['decorators']);
+          // console.log('data in service: ', data);
+          this.product.deserialize(data);
           return this.product;
         })
       );
@@ -64,13 +76,13 @@ export class ProductService {
       this.basket = [];
       if (JSON.parse(localStorage.getItem('basket'))) {
         this.basket = JSON.parse(localStorage.getItem('basket'));
-        this.getInBasket(product, this.basket)
-        console.log("il existe ? ", this.inBasket);
+        this.getInBasket(product, this.basket);
+        // console.log('il existe ? ', this.inBasket);
       }
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      if(this.inBasket){
+      if (this.inBasket) {
         this.updateProductBasket(product, this.basket);
       } else {
         this.basket.push(product);
@@ -83,19 +95,21 @@ export class ProductService {
   }
 
   getInBasket(product: Product, basket: Product[]) {
-    for(let p of basket) {
-      if(p.reference === product.reference) {
+    for (const p of basket) {
+      if (p.reference === product.reference) {
         this.inBasket = true;
+        return true;
       } else {
         this.inBasket = false;
+        return false;
       }
     }
   }
 
   updateProductBasket(product: Product, basket: Product[]) {
-    for(let i = 0 ; i<basket.length ; i++) {
-      if(basket[i].reference === product.reference){
-        if(basket[i].order.quantity + product.order.quantity > product.pricing.maxPerOrder){
+    for (let i = 0; i < basket.length; i++) {
+      if (basket[i].reference === product.reference) {
+        if (basket[i].order.quantity + product.order.quantity > product.pricing.maxPerOrder) {
           basket[i].order.quantity = product.pricing.maxPerOrder;
         } else {
           basket[i].order.quantity += product.order.quantity;
@@ -103,6 +117,6 @@ export class ProductService {
       }
     }
     localStorage.setItem('basket', JSON.stringify(basket));
-    console.log("basket in service :", basket);
+    // console.log('basket in service :', basket);
   }
 }

@@ -29,6 +29,7 @@ export class User {
         this.subscribeToNewsLetter = subscribeToNewsLetter;
     }
     deserialize(data: User) {
+        this.id = data.id;
         this.firstName = data.firstName;
         this.lastName = data.lastName;
         this.name = data.name;

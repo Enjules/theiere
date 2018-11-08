@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="register()">
+  <form class="login-form" [formGroup]="registerForm" (ngSubmit)="register()">
     <mat-form-field class="login-full-width">
       <input type="email" matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>alternate_email</mat-icon>
@@ -36,7 +36,11 @@
 
 
     <mat-form-field class="login-full-width">
-      <input matInput placeholder="Civility" formControlName="civility">
+      <mat-select placeholder="Mr / Mme" formControlName="civility">
+        <mat-option *ngFor="let civility of civilities" [value]="civility">
+          {{civility}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <div *ngIf="submitted && f.civility.errors" class="invalid-feedback">
       <div *ngIf="f.civility.errors.required">Civility requis</div>
@@ -48,12 +52,6 @@
       <input matInput placeholder="Entreprise" formControlName="company">
     </mat-form-field>
 
-    <mat-checkbox class="example-margin" formControlName="newsletter">Newsletter</mat-checkbox>
-
-    <button type="submit" mat-stroked-button color="primary" [disabled]="f.civility.errors 
-                                                                                   || f.email.errors 
-                                                                                   || f.password.errors  
-                                                                                   || f.firstName.errors 
-                                                                                   || f.lastName.errors">Valider</button>
+    <button type="submit" mat-stroked-button color="primary" [disabled]="!registerForm.valid">Valider</button>
   </form>
 </mat-dialog-content>
