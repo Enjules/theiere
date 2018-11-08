@@ -12,6 +12,8 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   slug: string;
   route: any;
+  quantity: number;
+  totalPricing: number;
 
   constructor(
     private productService: ProductService,
@@ -19,6 +21,7 @@ export class ProductDetailsComponent implements OnInit {
   ) {
     this.route = route;
     this.product = new Product;
+    this.quantity = 1;
   }
 
   ngOnInit() {
@@ -34,14 +37,18 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductBySlug(slug).subscribe(
       product => {
         this.product = product;
+        this.totalPricing = this.product.pricing.ttc;
+        // console.log(this.product);
       }
     );
   }
 
   addToBasket(product) {
+    product.order.quantity = this.quantity;
+    product.order.total = this.totalPricing;
     this.productService.addToBasket(product).subscribe(
       basket => {
-        console.log('** basket **', basket);
+        // console.log('** basket **', basket);
       },
       err => {
         console.error(err);
@@ -49,4 +56,17 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
+  addQuantityOrder() {
+    if(this.quantity < this.product.pricing.maxPerOrder){
+      this.quantity ++;
+      this.totalPricing = this.product.pricing.ttc * this.quantity;
+    }
+  }
+
+  removeQuantityOrder() {
+    if(this.quantity > 1){
+      this.quantity --;
+      this.totalPricing = this.product.pricing.ttc * this.quantity;
+    }
+  }
 }

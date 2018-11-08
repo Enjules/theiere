@@ -23,6 +23,19 @@ export class Pricing {
     }
 }
 
+export class Order {
+    quantity: number;
+    total: number;
+
+    constructor(
+        quantity = 1,
+        total = null
+    ) {
+        this.quantity = quantity;
+        this.total = total;
+    }
+}
+
 export class Product {
     id?: number;
     libelle: string;
@@ -33,6 +46,7 @@ export class Product {
     reference: string;
     title: string;
     slug: string;
+    order: Order;
 
     constructor(
         id = null,
@@ -43,7 +57,8 @@ export class Product {
         pricing = new Pricing(),
         reference = null,
         title = null,
-        slug = null
+        slug = null,
+        order = new Order()
     ) {
         this.id = id;
         this.libelle = libelle;
@@ -54,10 +69,12 @@ export class Product {
         this.reference = reference;
         this.title = title;
         this.slug = slug;
+        this.order = order;
     }
 
     public deserialize(data, slug?: string): Product {
 
+        this.id = data
         this.abstract = data.abstract.fr;
         this.description = data.description.fr;
         this.libelle = data.libelle.fr;

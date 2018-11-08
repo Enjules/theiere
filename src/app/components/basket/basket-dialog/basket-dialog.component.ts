@@ -23,6 +23,7 @@ export class BasketDialogComponent implements OnInit {
 
   ngOnInit() {
     this.getBasket();
+    console.log(this.basket);
   }
 
   getBasket() {
@@ -46,14 +47,17 @@ export class BasketDialogComponent implements OnInit {
   getTotalCost() {
     if (this.basket.length) {
           return this.basket.map(product => {
-      return product.pricing.ttc * product.pricing.quantity;
+      return product.pricing.ttc * product.order.quantity;
     }).reduce((acc, value) => {
       return acc + value;
     });
     } else {
       return 0;
     }
+  }
 
+  quantityChange() {
+    
   }
 
 }
