@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
         menus => {
           if (menus) {
             this.router.navigate(['/']);
+            console.log(this.loginForm);
           }
         }
       );

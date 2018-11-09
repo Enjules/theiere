@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ export function authServiceFactory(provider: AuthService) {
     CommonModule,
     HttpClientModule,
     FlexLayoutModule,
+    FormsModule,
     NgtUniversalModule,
     AppMaterialModule,
     AppRoutingModule,

@@ -50,9 +50,11 @@ section {
             margin: 10px;
             text-align: center;
             background-color: #f2f1f1;
+            max-width: 150px;
+
 
             img {
-                max-width: 200px;
+                max-width: 100%;
             }
 
             p {
@@ -133,22 +135,27 @@ section {
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+
+            #order-4 {
+                order: 4;
+            }
     
             article {
                 width: 100%;
+                height: auto;
 
                 .content {
                     text-align: center;
-                    max-height: 70vh;
+                    max-height: 100%;
                     
                     img {
-                        max-height: 450px;
+                        max-height: 250px;
                         max-width: 100%;
                     }
     
                     h3 {
                         font-size: 2.5em;
-                        margin: 50px auto;
+                        margin: 10px auto;
         
                         span {
                             display: block;
@@ -167,7 +174,7 @@ section {
                 button {
                     background-color: #fff;
                     color: #000;
-                    margin-bottom: 50px;
+                    margin: 10px;
                 }
             }
     
@@ -175,5 +182,9 @@ section {
                 background-image: url('/assets/img/home/promo/renata-adrienn.png')
             }
         }
+    }
+
+    h2 {
+        font-size: 2em !important;
     }
 }

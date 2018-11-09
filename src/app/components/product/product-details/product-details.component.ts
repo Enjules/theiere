@@ -29,8 +29,10 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       params => {
-        this.slug = params['slug'];
-        this.getProductBySlug(this.slug);
+        setTimeout(() => {
+          this.slug = params['slug'];
+          this.getProductBySlug(this.slug);
+        });
       }
     );
   }

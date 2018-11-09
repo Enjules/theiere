@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class BasketDialogComponent implements OnInit {
   basket: Product[];
-  displayedColumns: string[] = ['libelle', 'description', 'quantity', 'cost'];
+  displayedColumns: string[] = ['libelle', 'quantity', 'cost'];
   selectedValue: number;
   maxPeerOrder = Array.from({ length: 50 }).map((_, i) => `${i + 1}`);
   isLinear = true;

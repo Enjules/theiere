@@ -24,6 +24,7 @@ import { MainToolbarComponent } from './components/menu/main-menu/main-toolbar/m
 import { MainSidenavComponent } from './components/menu/main-menu/main-sidenav/main-sidenav.component';
 import { SubmenuSidenavComponent } from './components/menu/sub-menu/submenu-sidenav/submenu-sidenav.component';
 import { SubmenuToolbarComponent } from './components/menu/sub-menu/submenu-toolbar/submenu-toolbar.component';
+import { ConfirmEqualValidatorDirective } from './shared/validators/confirm-equal-directive';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { SubmenuToolbarComponent } from './components/menu/sub-menu/submenu-tool
   MainToolbarComponent,
   MainSidenavComponent,
   SubmenuSidenavComponent,
-  SubmenuToolbarComponent
+  SubmenuToolbarComponent,
+  ConfirmEqualValidatorDirective
 ],
   imports: [
     AppRoutingModule,
@@ -70,6 +72,7 @@ import { SubmenuToolbarComponent } from './components/menu/sub-menu/submenu-tool
     ContactComponent,
     BasketDialogComponent,
     ProductDetailsComponent,
+    ConfirmEqualValidatorDirective
   ],
   providers: [
   ],

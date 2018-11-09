@@ -1,7 +1,27 @@
 .example-container {
+    app-main-toolbar {
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
 
+    app-submenu-toolbar {
+        position: fixed;
+        z-index: 2;
+        top: 100px;
+        left: 0;
+        right: 0;
+    }
     
     mat-sidenav-container {
         background-color: #fff;
+
+        .fix-toolbar {
+            padding-top: 140px;
+        }
     }
+
+
   }

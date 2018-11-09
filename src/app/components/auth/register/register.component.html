@@ -3,49 +3,53 @@
     <mat-form-field class="login-full-width">
       <input type="email" matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>alternate_email</mat-icon>
+
+      <mat-error *ngIf="f.email.errors?.required">adresse email requise</mat-error>
+      <mat-error *ngIf="f.email.errors?.email">adresse mail non valide</mat-error>
     </mat-form-field>
-    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-      <div *ngIf="f.email.errors.required">Email requis</div>
-      <div *ngIf="f.email.errors.email">Email non valide (exemple@mail.fr)</div>
-    </div>
 
     <mat-form-field class="login-full-width">
-      <input type="password" matInput placeholder="Mot de passe" formControlName="password">
+      <input type="password" name="password" (change)="f.confirmPassword.updateValueAndValidity()"  matInput placeholder="Mot de passe" formControlName="password">
       <mat-icon matSuffix>lock</mat-icon>
+
+      <mat-error *ngIf="f.password.errors?.required">mot de passe requis</mat-error>
+      <mat-error *ngIf="f.password.errors?.minlength">mot de passe non valide (6
+        caractères minimum)</mat-error>
     </mat-form-field>
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Mot de passe requis</div>
-      <div *ngIf="f.password.errors.minlength">Votre mot de passe doit faire minimum 6 caractères</div>
-    </div>
+
+    <mat-form-field class="login-full-width">
+      <input type="password" name="confirmPassword" matInput placeholder="Confirmez votre mot de passe" formControlName="confirmPassword" appConfirmEqualValidator="password">
+      <mat-icon matSuffix>lock</mat-icon>
+
+      <mat-error *ngIf="f.confirmPassword.errors?.notEqual">
+        les mots de passe ne sont pas identique
+      </mat-error>
+      <mat-error *ngIf="f.password.errors?.required">mot de passe requis</mat-error>
+    </mat-form-field>
 
     <mat-form-field class="login-full-width">
       <input matInput placeholder="Nom" formControlName="lastName">
+
+      <mat-error *ngIf="f.lastName.errors?.required">nom requis</mat-error>
+      <mat-error *ngIf="f.lastName.errors?.minlength">2 caractères minimum</mat-error>
     </mat-form-field>
-    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-      <div *ngIf="f.lastName.errors.required">Nom requis</div>
-      <div *ngIf="f.fisrlastNametName.errors.minlength">Votre nom doit faire minimum 2 caractères</div>
-    </div>
 
     <mat-form-field class="login-full-width">
       <input matInput placeholder="Prénom" formControlName="firstName">
-    </mat-form-field>
-    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-      <div *ngIf="f.firstName.errors.required">Prénom requis</div>
-      <div *ngIf="f.firstName.errors.minlength">Votre prénom doit faire minimum 2 caractères</div>
-    </div>
 
+      <mat-error *ngIf="f.firstName.errors?.required">prénom requis</mat-error>
+      <mat-error *ngIf="f.firstName.errors?.minlength">2 caractères minimum</mat-error>
+    </mat-form-field>
 
     <mat-form-field class="login-full-width">
-      <mat-select placeholder="Mr / Mme" formControlName="civility">
+      <mat-select placeholder="Mme | Mr" formControlName="civility">
         <mat-option *ngFor="let civility of civilities" [value]="civility">
           {{civility}}
         </mat-option>
       </mat-select>
+
+      <mat-error *ngIf="f.civility.errors?.required">selectioner une valeur</mat-error>
     </mat-form-field>
-    <div *ngIf="submitted && f.civility.errors" class="invalid-feedback">
-      <div *ngIf="f.civility.errors.required">Civility requis</div>
-      <div *ngIf="f.civility.errors.minlength">Votre prénom doit faire minimum 2 caractères</div>
-    </div>
 
 
     <mat-form-field class="login-full-width">

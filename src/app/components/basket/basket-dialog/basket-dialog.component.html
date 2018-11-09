@@ -8,19 +8,15 @@
         <ng-container matColumnDef="libelle">
           <th mat-header-cell *matHeaderCellDef> Produit </th>
           <td mat-cell *matCellDef="let basket">
-            <div class="title">
+            <div class="title" [routerLink]="['/product', basket.slug]">
               <h3>{{basket.title}}</h3>
-              <img src="/assets/img/home/promo/promo_folies_grillades.jpg" alt="">
+              <img [src]="basket.image.url" [alt]="basket.image.alt">
             </div>
           </td>
           <td mat-footer-cell *matFooterCellDef> Total </td>
         </ng-container>
 
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef> Description </th>
-          <td mat-cell *matCellDef="let basket"> {{basket.description}} </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
+
 
         <ng-container matColumnDef="quantity">
           <th mat-header-cell *matHeaderCellDef> Quantité </th>

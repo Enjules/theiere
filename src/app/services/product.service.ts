@@ -77,7 +77,7 @@ export class ProductService {
       if (JSON.parse(localStorage.getItem('basket'))) {
         this.basket = JSON.parse(localStorage.getItem('basket'));
         this.getInBasket(product, this.basket);
-        // console.log('il existe ? ', this.inBasket);
+         console.log('il existe ? ', this.inBasket);
       }
     }
 
