@@ -1,5 +1,77 @@
 <div class="container">
-  <mat-card *ngFor="let product of products">
+  <h2 *ngIf="category.title">{{ category.title }}</h2>
+  <mat-card>
+    <mat-card-header>
+      <div class="category-products">
+        <div class="product" *ngFor="let product of category.products">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
+              <mat-card-subtitle>
+                <div *ngIf="product?.origin">
+                  Origine: {{ product?.origin }}
+                </div>
+
+                <div *ngIf="product.reference" class="ref">
+                  Reference: {{ product.reference }}
+                </div>
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <div class="image">
+              <img mat-card-image  [src]="product.images[0].url" [alt]="product.images[0].alt">
+            </div>
+
+            <div class="description">
+              {{ product.description }}
+            </div>
+
+            <mat-card-actions>
+              <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-header>
+
+
+    <mat-card-content *ngFor="let subCategory of category.subCategory" class="sub-category">
+      <mat-card-title *ngIf="subCategory.title">{{ subCategory.title }}</mat-card-title>
+      <div class="product" *ngFor="let product of subCategory.products">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
+            <mat-card-subtitle>
+              <div *ngIf="product?.origin">
+                Origine: {{ product?.origin }}
+              </div>
+
+              <div *ngIf="product.reference" class="ref">
+                Reference: {{ product.reference }}
+              </div>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <div class="image">
+            <img mat-card-image  [src]="product.images[0].url" [alt]="product.images[0].alt">
+          </div>
+
+          <div class="description">
+            {{ product.description }}
+          </div>
+
+          <mat-card-actions>
+            <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+  <!--
+    <mat-card *ngFor="let product of products">
     <mat-card-header [routerLink]="['/product', product.slug]">
       <mat-card-title>
         <div class="title">
@@ -28,10 +100,10 @@
       </div>
     </mat-card-content>
 
-    
+
     <mat-card-actions>
         <mat-divider></mat-divider>
       <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
     </mat-card-actions>
   </mat-card>
-</div>
+  -->

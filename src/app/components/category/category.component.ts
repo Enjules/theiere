@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { CategoryService } from '../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
+import {Category} from '../../models/Category';
 
 @Component({
   selector: 'app-product',
@@ -8,14 +10,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  products;
+  category: Category;
   slug: string;
   route: any;
 
   constructor(
     private productService: ProductService,
+    private categoryService: CategoryService,
     route: ActivatedRoute
   ) {
+    this.category = new Category();
     this.route = route;
   }
 
@@ -31,13 +35,13 @@ export class CategoryComponent implements OnInit {
   }
 
   getProductsByCategory(slug) {
-    this.productService.getProductsByCategory(slug).subscribe(
+    this.categoryService.getCategoryBySlug(slug).subscribe(
       products => {
-        this.products = products;
-       // console.log('** this.products **', products);
+        this.category = products;
+        console.log('** this.products **', products);
       },
       err => {
-        alert('Articles en cours d\'importation');
+        console.log('ERREUR');
       }
     );
   }

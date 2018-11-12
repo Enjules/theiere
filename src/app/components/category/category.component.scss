@@ -1,62 +1,6 @@
 .container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: auto;
-    
-    mat-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 250px;
-        margin: 15px;
-        
 
-        mat-card-header {
-            height: 100px;
-            font-size: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            outline: none;
-
-                mat-card-title {
-                    width: 200px;
-
-                    .title {
-                        max-width: 150px;
-                        height: 50px;
-                        font-size: 15px;
-                        clear: both;
-                    }
-    
-                    > .right {
-                        position: absolute;
-                        right: 0px;
-                        top: 0px;
-                        padding: 10px 5px;
-                        font-size: 15px;
-                    }
-                }
-
-                mat-card-subtitle {
-                    font-size: 10px;
-                }
-        }
-
-        .mat-card-image {
-            max-height: 200px;
-            cursor: pointer;
-            outline: none;
-        }
-
-        mat-card-content {
-            cursor: pointer;
-            outline: none;
-        }
+    .image {
+        max-width: 150px;
     }
-}
-
-.mat-card-header-text {
-    width: 100% !important;
 }

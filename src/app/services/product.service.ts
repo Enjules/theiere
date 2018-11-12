@@ -38,7 +38,6 @@ export class ProductService {
               this.products.push(new Product().deserialize(data, product.slug));
             }
           );
-
           return this.products;
         }),
       );

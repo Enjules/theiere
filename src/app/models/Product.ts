@@ -1,3 +1,5 @@
+import {forEach} from '@angular/router/src/utils/collection';
+
 export class Product {
     id?: number;
     libelle: string;
@@ -8,7 +10,7 @@ export class Product {
     reference: string;
     title: string;
     slug: string;
-    image: Image;
+    images: Image[];
     order: Order;
 
     constructor(
@@ -21,7 +23,7 @@ export class Product {
         reference = null,
         title = null,
         slug = null,
-        image = new Image(),
+        images = [],
         order = new Order()
     ) {
         this.id = id;
@@ -33,28 +35,30 @@ export class Product {
         this.reference = reference;
         this.title = title;
         this.slug = slug;
-        this.image = image;
+        this.images = images;
         this.order = order;
     }
 
     public deserialize(data, slug?: string): Product {
         this.abstract = data[0] ? data[0].abstract.fr : data.content.abstract.fr;
         this.description = data[0] ? data[0].description.fr : data.content.description.fr;
-        this.libelle = data[0] ? data[0].libelle.fr : data.content.libelle.fr;
         this.origin = data[0] ? data[0].origin.fr : data.content.origin.fr;
         this.pricing = data[0] ? data[0].pricing[0] : data.content.pricing[0];
         this.reference = data[0] ? data[0].reference : data.content.reference;
         this.title = data[0] ? data[0].title.fr : data.content.title.fr;
         this.slug = slug;
-        this.image = {
-            url: data[1][1].values[0] ?
-                data[1][1].decorator.root + data[1][1].values[0].src :
-                'assets/img/no_image.png',
-            alt: data[1][1].values[0] ?
-                data[1][1].values[0].alt.fr :
-                'image'
-        };
-
+        if (data[1][0]['values'] !== undefined) {
+            for (let i = 0 ; i < data[1][0]['values'].length ; i++) {
+                console.log('test');
+                const img = new Image();
+                img.url = data[1][0]['values'][i] ? data[1][0].decorator.root + data[1][0]['values'][i].src : 'assets/img/no_image.png';
+                img.alt = data[1][0]['values'][i].alt ? data[1][0]['values'][i].alt['fr'] : 'image';
+                this.images.push(img);
+            }
+        } else {
+            this.images = new Image('assets/img/no_image.png' , 'image');
+        }
+        console.log('MON THIS IMAGE' , this.images);
         return this;
     }
 }
