@@ -6,7 +6,7 @@ export class Product {
     abstract: string;
     description: string;
     origin: string;
-    pricing: Pricing;
+    pricing: Pricing[];
     reference: string;
     title: string;
     slug: string;
@@ -19,7 +19,7 @@ export class Product {
         abstract = null,
         description = null,
         origin = null,
-        pricing = new Pricing(),
+        pricing = [new Pricing()],
         reference = null,
         title = null,
         slug = null,
@@ -43,23 +43,38 @@ export class Product {
         this.abstract = data[0] ? data[0].abstract.fr : data.content.abstract.fr;
         this.description = data[0] ? data[0].description.fr : data.content.description.fr;
         this.origin = data[0] ? data[0].origin.fr : data.content.origin.fr;
-        this.pricing = data[0] ? data[0].pricing[0] : data.content.pricing[0];
+        this.pricing = data[0] ? data[0].pricing : data.content.pricing;
         this.reference = data[0] ? data[0].reference : data.content.reference;
         this.title = data[0] ? data[0].title.fr : data.content.title.fr;
         this.slug = slug;
         if (data[1][0]['values'] !== undefined) {
             for (let i = 0 ; i < data[1][0]['values'].length ; i++) {
-                console.log('test');
                 const img = new Image();
                 img.url = data[1][0]['values'][i] ? data[1][0].decorator.root + data[1][0]['values'][i].src : 'assets/img/no_image.png';
                 img.alt = data[1][0]['values'][i].alt ? data[1][0]['values'][i].alt['fr'] : 'image';
                 this.images.push(img);
             }
         } else {
-            this.images = new Image('assets/img/no_image.png' , 'image');
+            this.images.push(new Image('assets/img/no_image.png' , 'image'));
         }
-        console.log('MON THIS IMAGE' , this.images);
+        //console.log('MON THIS IMAGE' , this.images);
+        this.setMinimalPricing()
+        //console.log("LAAAA" , this.pricing);
         return this;
+    }
+
+    setMinimalPricing(): Pricing[] {
+        if(this.pricing.length > 1) {
+            return this.pricing.sort(function(a, b) {
+                return a.ttc - b.ttc;
+            });
+        } else {
+            return this.pricing;
+        }
+    }
+
+    getMinimalPricing(): Pricing {
+        return this.pricing[0];
     }
 }
 

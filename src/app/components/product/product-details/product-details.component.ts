@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
-import { Product } from '../../../models/Product';
+import { Product, Pricing } from '../../../models/Product';
 
 @Component({
   selector: 'app-product-details',
@@ -10,10 +10,10 @@ import { Product } from '../../../models/Product';
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product;
+  quantitySelected: Pricing;
   slug: string;
   route: any;
   quantity: number;
-  totalPricing: number;
   addedInBasket: boolean;
 
   constructor(
@@ -41,15 +41,15 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductBySlug(slug).subscribe(
       product => {
         this.product = product;
-        this.totalPricing = this.product.pricing.ttc;
-       // console.log(this.product);
+        this.quantitySelected = product.getMinimalPricing();
+        console.log("produit " , this.product);
       }
     );
   }
 
   addToBasket(product) {
     product.order.quantity = this.quantity;
-    product.order.total = this.totalPricing;
+    product.order.total = this.quantitySelected.ttc * this.quantity;
     this.productService.addToBasket(product).subscribe(
       basket => {
         // console.log('** basket **', basket);
@@ -67,16 +67,14 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addQuantityOrder() {
-    if (this.quantity < this.product.pricing.maxPerOrder) {
+    if (this.quantity < this.product.pricing[0].maxPerOrder) {
       this.quantity++;
-      this.totalPricing = this.product.pricing.ttc * this.quantity;
     }
   }
 
   removeQuantityOrder() {
     if (this.quantity > 1) {
       this.quantity--;
-      this.totalPricing = this.product.pricing.ttc * this.quantity;
     }
   }
 }

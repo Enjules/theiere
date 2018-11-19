@@ -18,6 +18,21 @@
                 margin-top: 20px;
             }
 
+            .quantity-select {
+                max-width: 200px;
+                background-color: white;
+                margin-left: 16px;
+                min-height: 35px;
+                border-radius: 4px;
+                border-color: rgba(0, 0, 0, 0.12);
+
+                mat-select {
+                    margin-top: 6px;
+                    margin-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+
             #quantity {
                 margin: 0 16px;
                 display: flex;
@@ -29,6 +44,7 @@
     
                     div {
                         background: white;
+                        border-radius: 4px;
                         margin: 5px;
                     }
     
@@ -39,7 +55,6 @@
                     .number {
                         border: 1px solid;
                         border-color: rgba(0, 0, 0, 0.12);
-                        border-radius: 4px;
                         min-width: 100px;
                         display: flex;
                         justify-content: center;

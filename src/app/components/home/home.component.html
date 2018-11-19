@@ -4,20 +4,30 @@
       <img [src]="logo_blanc_soeurs_theieres" alt="logo blanc soeurs theieres">
       <div class="title">
         <h2>Les soeurs théière,</h2>
-        <p>Qui sont-elles ?</p>
+        <p>Qui sommes-nous ?</p>
       </div>
 
     </div>
 
     <div id="presentation" class="item">
       <p>
-          Noémie et Natacha sœurs avant tout, ont décidées après des échecs professionnels de vivre de leur passion.
-          La société Les Sœurs Théière est une entreprise familiale, jeune et dynamique mais surtout passionnée par son métier, crée depuis le 23 août 2018.
-          Notre passion pour le thé est à l’origine du projet, toutes deux grandes amatrices de cette boisson chaude que nous consommons au quotidien. Ce fut pour nous une évidence de pouvoir partager notre passion.
-          Notre but est de proposer des produits originaux et authentiques. Nous sélectionnons nos produits de façon à vous proposer que le meilleur et en essayant de privilégier les circuits courts. Nous travaillons en collaboration avec des producteurs locaux de notre région afin de pouvoir allier saveur, plaisir, gourmandise et d’émoustiller tous vos sens.
-          Les ingrédients ont été choisis pour leur goût, leur fraicheur et leur qualité. 
-          Nous sélectionnons également des produits d’épiceries fines (confiture, miel…) de producteurs locaux, pour accompagner nos breuvages gourmands
-          Voici donc notre gamme de thés et infusions Authentiques & Originaux !        
+        Nous sommes Noémie et Natacha, les deux soeurs théière.
+        <br/>
+        En quête de nouvelles aventures, nous avons décidé, par passion, de nous lancer dans le monde du thé.
+        
+        L’idée s’est faite en famille, autour d’une bonne tasse de thé. Épanouissement, passion et plaisir sont les maîtres mots de ce concept mais surtout les besoins et envies qui nous ont fait sauter le pas.
+        <br/>
+        Nous avons créé l’entreprise en Août 2018. C’est une société familiale, jeune et dynamique mais surtout, elle est devenue pour nous une évidence.
+        
+        Notre but est de proposer des produits originaux et authentiques. Nous sélectionnons nos produits de façon à ne vous proposer que le meilleur et ainsi allier saveur, plaisir et gourmandise.
+        
+        Les ingrédients sont choisis pour leur goût, leur fraîcheur et leur qualité.
+        <br/>
+        Nous souhaitons également privilégier les circuits courts ; c’est pourquoi nous travaillons en collaboration avec des producteurs locaux de la région Ariègeoise.
+        
+        Nous sélectionnons également pour vous, des produits d’épicerie pour accompagner nos breuvages gourmands ainsi que des accessoires et une gamme spéciale, dédiée au café.
+        <br/>
+        Nous travaillons chaque jour avec cœur afin d’enchanter vos papilles et rendre vos journées encore plus agréables.      
       </p>
     </div>
   </article>
@@ -49,7 +59,7 @@
         </p>
       </div>
 
-      <button mat-raised-button>Découvrir notre box</button>
+      <button mat-raised-button *ngIf="!applicationService.onDevelopment">Découvrir notre box</button>
     </article>
 
     <article>
@@ -58,7 +68,7 @@
         <img [src]="soleilImg" alt="">
       </div>
 
-      <button mat-raised-button>En savoir plus</button>
+      <button mat-raised-button *ngIf="!applicationService.onDevelopment">En savoir plus</button>
     </article>
 
     <article  id="order-4">
@@ -67,7 +77,7 @@
         <img [src]="vertImg" alt="">
       </div>
 
-      <button mat-raised-button>En savoir plus</button>
+      <button mat-raised-button *ngIf="!applicationService.onDevelopment">En savoir plus</button>
     </article>
 
     <article class="bc">
@@ -80,7 +90,7 @@
             </p>
         </div>
   
-        <button mat-raised-button>En savoir plus</button>
+        <button mat-raised-button *ngIf="!applicationService.onDevelopment">En savoir plus</button>
       </article>
   </div>
 </section>

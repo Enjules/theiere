@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Menu } from '../../../../models/Menu';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-submenu-sidenav',
@@ -7,6 +8,7 @@ import { Menu } from '../../../../models/Menu';
   styleUrls: ['./submenu-sidenav.component.scss']
 })
 export class SubmenuSidenavComponent implements OnInit {
+  applicationService : ApplicationService;
   @Input()
   snav;
 
@@ -19,7 +21,8 @@ export class SubmenuSidenavComponent implements OnInit {
   categories = [];
 
 
-  constructor() {
+  constructor(private service: ApplicationService) {
+    this.applicationService = service;
   }
 
   ngOnInit() {

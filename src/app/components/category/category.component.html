@@ -1,67 +1,102 @@
 <div class="container">
-  <h2 *ngIf="category.title">{{ category.title }}</h2>
+  <h2 class="titre" *ngIf="category.title">{{ category.title }}</h2>
   <mat-card>
     <mat-card-header>
       <div class="category-products">
-        <div class="product" *ngFor="let product of category.products">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
-              <mat-card-subtitle>
-                <div *ngIf="product?.origin">
-                  Origine: {{ product?.origin }}
-                </div>
-
-                <div *ngIf="product.reference" class="ref">
-                  Reference: {{ product.reference }}
-                </div>
-              </mat-card-subtitle>
-            </mat-card-header>
-
+        <mat-card class="product" *ngFor="let product of category.products">
+          <div class="flex-product" [routerLink]="['/product', product.slug]">
             <div class="image">
-              <img mat-card-image  [src]="product.images[0].url" [alt]="product.images[0].alt">
+              <img mat-card-image [src]="product.images[0].url" [alt]="product.images[0].alt">
             </div>
 
-            <div class="description">
-              {{ product.description }}
-            </div>
+            <div class="product-content">
+              <mat-card-header>
+                <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
+                <mat-card-subtitle>
+                  <div *ngIf="product?.origin">
+                    Origine: {{ product?.origin }}
+                  </div>
 
-            <mat-card-actions>
-              <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
+                  <div *ngIf="product.reference" class="ref">
+                    Reference: {{ product.reference }}
+                  </div>
+                </mat-card-subtitle>
+              </mat-card-header>
+
+
+            </div>
+          </div>
+
+          <div *ngIf="product.pricing.length > 1">
+            <div class="quantity-select">
+              <mat-select placeholder="{{ product.getMinimalPricing().quantity }}" [(value)]="quantitySelected">
+                <mat-option *ngFor="let pricing of product.pricing" [value]="pricing">
+                  {{ pricing.quantity }} | {{ pricing.ttc }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <p *ngIf="quantitySelected.ttc">{{ quantitySelected.ttc }}</p>
+            <p *ngIf="!quantitySelected.ttc">{{ product.getMinimalPricing().ttc }}</p>
+          </div>
+          <div *ngIf="product.pricing.length == 1">
+            <p>Quantité : {{ product.pricing[0].quantity }}</p>
+            <p>Prix : {{ product.pricing[0].ttc }}</p>
+          </div>
+
+          <mat-card-actions class="button">
+            <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </mat-card-header>
 
 
     <mat-card-content *ngFor="let subCategory of category.subCategory" class="sub-category">
       <mat-card-title *ngIf="subCategory.title">{{ subCategory.title }}</mat-card-title>
-      <div class="product" *ngFor="let product of subCategory.products">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
-            <mat-card-subtitle>
-              <div *ngIf="product?.origin">
-                Origine: {{ product?.origin }}
-              </div>
+      <div class="category-products">
+        <mat-card class="product" *ngFor="let product of subCategory.products">
+          <div class="flex-product" [routerLink]="['/product', product.slug]">
+            <div class="image">
+              <img mat-card-image [src]="product.images[1].url" [alt]="product.images[1].alt">
+            </div>
 
-              <div *ngIf="product.reference" class="ref">
-                Reference: {{ product.reference }}
-              </div>
-            </mat-card-subtitle>
-          </mat-card-header>
+            <div class="product-content">
+              <mat-card-header>
+                <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
+                <mat-card-subtitle>
+                  <div *ngIf="product?.origin">
+                    Origine: {{ product?.origin }}
+                  </div>
 
-          <div class="image">
-            <img mat-card-image  [src]="product.images[0].url" [alt]="product.images[0].alt">
+                  <div *ngIf="product.reference" class="ref">
+                    Reference: {{ product.reference }}
+                  </div>
+                </mat-card-subtitle>
+              </mat-card-header>
+
+
+            </div>
           </div>
 
-          <div class="description">
-            {{ product.description }}
+          <div *ngIf="product.pricing.length > 1">
+            <P>Quantité :</P>
+            <div class="select">
+            <mat-select placeholder="{{ product.getMinimalPricing().quantity }}" [(value)]="quantitySelected">
+              <mat-option *ngFor="let pricing of product.pricing" [value]="pricing">
+                {{ pricing.quantity }} | {{ pricing.ttc }} €
+              </mat-option>
+            </mat-select>
+          </div>
+            <p *ngIf="quantitySelected.ttc">{{ quantitySelected.ttc }} €</p>
+            <p *ngIf="!quantitySelected.ttc">{{ product.getMinimalPricing().ttc }} €</p>
+          </div>
+          <div *ngIf="product.pricing.length == 1">
+            <p>Quantité : {{ product.pricing[0].quantity }}</p>
+            <p>Prix : {{ product.pricing[0].ttc }} €</p>
           </div>
 
-          <mat-card-actions>
-            <button mat-button (click)="addToBasket(product)">AJOUTER AU PANIER</button>
+          <mat-card-actions class="button">
+            <button mat-button (click)="test()">AJOUTER AU PANIER</button>
           </mat-card-actions>
         </mat-card>
       </div>
@@ -70,7 +105,7 @@
   </mat-card>
 </div>
 
-  <!--
+<!--
     <mat-card *ngFor="let product of products">
     <mat-card-header [routerLink]="['/product', product.slug]">
       <mat-card-title>

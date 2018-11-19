@@ -1,6 +1,51 @@
 .container {
 
-    .image {
-        max-width: 150px;
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+
+    .category-products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .product {
+            max-width: 19vw;
+            margin: 0 15px 50px 15px;
+            padding-bottom: 50px;
+            padding-top: 0px;
+            text-align: center;
+
+            .flex-product {
+                margin-top: 10px;
+
+                .product-content {
+                }
+
+                .image {
+                    width: 100%;
+
+                    img {
+                        min-width: 100px;
+                    }
+                }
+
+            }
+
+            .quantity-select {
+                display: flex;
+
+                .mat-select {
+                    width: 100px !important;
+                }
+            }
+
+            .button {
+                position: absolute;
+                bottom: 15px;
+            }
+        }
     }
 }

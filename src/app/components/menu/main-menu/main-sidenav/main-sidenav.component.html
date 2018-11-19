@@ -8,7 +8,7 @@
     </div>
 
 
-    <div class="item" *ngFor="let option of mainMenu.options" [class.hide]="!tabletQuery.matches">
+    <div class="item" *ngFor="let option of mainMenu.options" [class.hide]="!tabletQuery.matches" [hidden]="applicationService.onDevelopment">
       <button *ngIf="option.slug === 'basket'" [disabled]="disableBtn" mat-button color="primary" [routerLink]="option.route"
         (click)="snav.toggle()">
         {{ option.content.title[0].fr }}
@@ -18,4 +18,10 @@
         <span>{{ option.content.title[0].fr }}</span>
       </button>
     </div>
+
+    <div class="item" *ngIf="applicationService.onDevelopment">
+        <button *ngIf="mainMenu.options[1].slug != 'basket'" mat-button color="primary" [routerLink]="mainMenu.options[1].route">
+          <span>{{ mainMenu.options[1].content.title[0].fr }}</span>
+        </button>
+      </div>
   </mat-nav-list>

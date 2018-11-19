@@ -13,7 +13,7 @@
     </button>
   </div>
 
-  <div class="item" [class.hide]="tabletQuery.matches">
+  <div class="item" [class.hide]="tabletQuery.matches" [hidden]="applicationService.onDevelopment">
     <mat-form-field>
       <input type="search" matInput placeholder="Recherche">
       <mat-icon matSuffix>search</mat-icon>
@@ -26,7 +26,8 @@
     </a>
   </div>
 
-  <div class="item" *ngFor="let option of mainMenu.options" [class.hide]="tabletQuery.matches">
+
+  <div class="item" *ngFor="let option of mainMenu.options" [class.hide]="tabletQuery.matches" [hidden]="applicationService.onDevelopment">
     
     <button *ngIf="option.slug === 'basket'" [disabled]="disableBtn" mat-button color="primary" [routerLink]="option.route">
         <span [matBadge]="basket.length" matBadgeOverlap="false">{{
@@ -35,6 +36,11 @@
 
     <button *ngIf="option.slug != 'basket'" mat-button color="primary" [routerLink]="option.route">
       <span>{{ option.content.title[0].fr }}</span>
+    </button>
+  </div>
+  <div class="item" *ngIf="applicationService.onDevelopment">
+    <button *ngIf="mainMenu.options[1].slug != 'basket'" mat-button color="primary" [routerLink]="mainMenu.options[1].route">
+      <span>{{ mainMenu.options[1].content.title[0].fr }}</span>
     </button>
   </div>
 </mat-toolbar>

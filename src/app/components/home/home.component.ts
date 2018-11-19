@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, Injectable } from '@angular/core';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,10 @@ import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
+
 export class HomeComponent implements OnInit {
+  applicationService: ApplicationService;
   logo_blanc_soeurs_theieres = '/assets/img/logo/Illustration.png';
 
   promo = [
@@ -36,7 +40,9 @@ export class HomeComponent implements OnInit {
   soleilImg = '/assets/img/home/promo/soleil des tropiques bio2.png';
   vertImg = '/assets/img/home/promo/vert le the.png';
 
-  constructor() { }
+  constructor(private service: ApplicationService) { 
+    this.applicationService = service;
+  }
 
   ngOnInit() {
   }

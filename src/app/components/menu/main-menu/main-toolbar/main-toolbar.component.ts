@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Menu } from '../../../../models/Menu';
 import { ProductService } from '../../../../services/product.service';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-main-toolbar',
@@ -8,6 +9,7 @@ import { ProductService } from '../../../../services/product.service';
   styleUrls: ['./main-toolbar.component.scss']
 })
 export class MainToolbarComponent implements OnInit {
+  applicationService: ApplicationService;
   @Input()
   snav;
 
@@ -28,8 +30,11 @@ export class MainToolbarComponent implements OnInit {
   disableBtn: boolean;
 
   constructor(
-    private productService: ProductService
-  ) { }
+    private productService: ProductService,
+    private service: ApplicationService
+  ) { 
+    this.applicationService = service;
+  }
 
   ngOnInit() {
     this.getBasket();

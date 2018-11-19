@@ -20,6 +20,7 @@ export class CategoryService {
         return this.httpClient.get<Product[]>(`${this.apiUrl}/category/${slug}`)
             .pipe(
                 map(res => {
+                    console.log("MA CATEGORIE :" , res);
                     this.category = new Category();
                     this.category.title = res['currentCategory']['content']['title'][0]['fr'];
                     res['categoryProducts'].map(
@@ -32,13 +33,13 @@ export class CategoryService {
                     res['childrenProducts'].map(
                         category => {
                             const newCategory = new Category();
-                            newCategory.title = category['category']['title'][0]['fr'];
-                            newCategory.description = category['category']['description']['fr'];
+                            newCategory.title = category['category']['content']['title'][0]['fr'];
+                            //newCategory.description = category['category']['content']['description']['fr'];
                             category.products.map(
                                 product => {
                                     const data = [];
                                     data.push(product.content, product.decorators);
-                                    newCategory.products.push(new Product().deserialize(data));
+                                    newCategory.products.push(new Product().deserialize(data,product.slug));
                                 }
                             );
                             this.category.subCategory.push(newCategory);

@@ -108,8 +108,8 @@ export class ProductService {
   updateProductBasket(product: Product, basket: Product[]) {
     for (let i = 0; i < basket.length; i++) {
       if (basket[i].reference === product.reference) {
-        if (basket[i].order.quantity + product.order.quantity > product.pricing.maxPerOrder) {
-          basket[i].order.quantity = product.pricing.maxPerOrder;
+        if (basket[i].order.quantity + product.order.quantity > product.pricing[0].maxPerOrder) {
+          basket[i].order.quantity = product.pricing[0].maxPerOrder;
         } else {
           basket[i].order.quantity += product.order.quantity;
         }

@@ -22,6 +22,33 @@
             padding-top: 140px;
         }
     }
+  }
 
+  #footer {
+      background-color: #6C6C6C;
+      height: 110px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
 
+      img {
+          max-height: 24px;
+          max-width: 24px;
+      }
+
+      p {
+          color: white;
+      }
+
+      .text-right {
+          text-align: right;
+      }
+
+      .dev-by {
+          margin-top: 30px;
+      }
+      
+      a {
+        color: #24D1F0;
+      }
   }

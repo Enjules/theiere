@@ -13,6 +13,18 @@
             flex-direction: column;
             margin: 25px 0;
             padding: 10px;
+
+            .send-ok {
+                margin-top: 10px;
+                text-align: center;
+                color: green;
+            }
+
+            .send-not-ok {
+                margin-top: 10px;
+                text-align: center;
+                color: red;
+            }
         }
 
         .full-width {

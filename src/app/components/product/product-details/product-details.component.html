@@ -1,16 +1,13 @@
 <div class="container">
   <mat-card>
-    <div class="image" *ngIf="product.image.url">
-      <img mat-card-image [src]="product.image.url" alt="PROMOTIONS">
+    <div class="image" *ngIf="product.images[0].url">
+      <img mat-card-image [src]="product.images[0].url" alt="product.images[0].alt">
     </div>
     <div class="content">
       <div>
         <mat-card-header>
           <mat-card-title>
-            {{ product.libelle }}
-            <span class="right">
-              {{ product.pricing.ttc }} €
-            </span>
+            {{ product.title }}
           </mat-card-title>
 
           <mat-card-subtitle>
@@ -18,6 +15,7 @@
           </mat-card-subtitle>
         </mat-card-header>
       </div>
+
       <div id="quantity">
         <div id="quantity-btn-grp">
           <div><button mat-stroked-button (click)="removeQuantityOrder()">
@@ -32,31 +30,42 @@
         </div>
 
         <div id="prix">
-          <p>{{ totalPricing | currency:'EUR':'symbol':'1.2-2' }}</p>
+          <p>{{ quantitySelected.ttc * quantity }}€</p>
         </div>
       </div>
+      
+      <div *ngIf="product.pricing.length > 1" class="quantity-select">
+        <mat-select placeholder="{{ product.getMinimalPricing().quantity }} | {{ product.getMinimalPricing().ttc }}€"
+          [(value)]="quantitySelected">
+          <mat-option *ngFor="let pricing of product.pricing" [value]="pricing">
+            {{ pricing.quantity }} | {{ pricing.ttc }}€
+          </mat-option>
+        </mat-select>
+      </div>
+
+
       <div id="desc">
         <p>{{ product.description }}</p>
       </div>
       <div id="stock-ref-button">
         <div id="stock-ref">
           <div id="ref">
-              <p>{{ product.reference }}</p>
+            <p>{{ product.reference }}</p>
           </div>
-          <div *ngIf="product.pricing.stock" class="stock" id="done">
+          <div *ngIf="product.pricing[0].stock" class="stock" id="done">
             <p>En stock</p>
             <mat-icon>done</mat-icon>
           </div>
-          <div *ngIf="!product.pricing.stock" class="stock" id="clear">
+          <div *ngIf="!product.pricing[0].stock" class="stock" id="clear">
             <p>Pas disponible</p>
             <mat-icon>clear</mat-icon>
           </div>
         </div>
         <div id="div-button">
           <mat-card-actions>
-            <button id="button"  color="primary" mat-raised-button (click)="addToBasket(product)">
+            <button id="button" color="primary" mat-raised-button (click)="addToBasket(product)">
               AJOUTER AU PANIER
-            <mat-icon *ngIf="addedInBasket">done</mat-icon>
+              <mat-icon *ngIf="addedInBasket">done</mat-icon>
             </button>
           </mat-card-actions>
         </div>

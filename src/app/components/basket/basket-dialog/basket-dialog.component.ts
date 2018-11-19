@@ -52,10 +52,10 @@ export class BasketDialogComponent implements OnInit {
   }
 
   getMaxPeerOrder(product: Product) {
-    if (product.pricing.stock < product.pricing.maxPerOrder) {
-      this.maxPeerOrder = Array.from({ length: product.pricing.stock }).map((_, i) => `${i + 1}`);
+    if (product.pricing[0].stock < product.pricing[0].maxPerOrder) {
+      this.maxPeerOrder = Array.from({ length: product.pricing[0].stock }).map((_, i) => `${i + 1}`);
     } else {
-      this.maxPeerOrder = Array.from({ length: product.pricing.maxPerOrder }).map((_, i) => `${i + 1}`);
+      this.maxPeerOrder = Array.from({ length: product.pricing[0].maxPerOrder }).map((_, i) => `${i + 1}`);
     }
 
     return this.maxPeerOrder;
@@ -64,7 +64,7 @@ export class BasketDialogComponent implements OnInit {
   getTotalCost() {
     if (this.basket.length) {
       return this.basket.map(product => {
-        return product.pricing.ttc * product.order.quantity;
+        return product.pricing[0].ttc * product.order.quantity;
       }).reduce((acc, value) => {
         return acc + value;
       });

@@ -2,21 +2,34 @@
   <article>
     <h3>Contactez nous</h3>
 
-    <form id="contact-form">
+    <form id="contact-form" [formGroup]="contactForm" (ngSubmit)="contact()">
 
       <mat-form-field class="full-width">
-        <textarea matInput rows="5" placeholder="Votre message"></textarea>
+        <textarea matInput rows="5" placeholder="Votre message" formControlName="message"></textarea>
+
+        <mat-error *ngIf="f.message.errors?.required">message requis</mat-error>
+        <mat-error *ngIf="f.message.errors?.minlength">10 caractères minimum</mat-error>
       </mat-form-field>
 
       <mat-form-field class="login-full-width">
-        <input type="text" matInput placeholder="Votre nom">
+        <input type="text" matInput placeholder="Votre nom" formControlName="name">
+
+        <mat-error *ngIf="f.name.errors?.required">nom requis</mat-error>
+        <mat-error *ngIf="f.name.errors?.minlength">2 caractères minimum</mat-error>
       </mat-form-field>
 
       <mat-form-field class="login-full-width">
-        <input type="email" matInput placeholder="Votre email">
+        <input type="email" matInput placeholder="Votre email" formControlName="email">
+        <mat-icon matSuffix>alternate_email</mat-icon>
+
+        <mat-error *ngIf="f.email.errors?.required">adresse email requise</mat-error>
+        <mat-error *ngIf="f.email.errors?.email">adresse mail non valide</mat-error>
       </mat-form-field>
 
-      <button type="submit" mat-raised-button disabled color="primary">Envoyer</button>
+      <button type="submit" mat-raised-button [disabled]="!contactForm.valid" color="primary">Envoyer</button>
+
+      <p class="send-ok" *ngIf="colorMessage === 'green'">{{ message }}</p>
+      <p class="send-not-ok" *ngIf="colorMessage === 'red'">{{ message }}</p>
     </form>
 
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11683.202285292435!2d1.847366!3d42.940331!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2d6f8ca6755e8b28!2sCap+Mirabeau!5e0!3m2!1sfr!2sfr!4v1541704038664"
